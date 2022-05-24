@@ -30,9 +30,8 @@ const Login = () => {
   const handlesubmit = async (event) => {
     event.preventDefault();
 
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
-        console.log(email, password);
+    let email = emailRef.current.value;
+    let password = passwordRef.current.value;
 
     await signInWithEmailAndPassword(email, password);
   };
@@ -53,12 +52,15 @@ const Login = () => {
 
   if (error) {
     msg = error.message.slice(22, error.message.length - 2);
+    
+
   }
 
   if (gError) {
     msg = gError?.message.slice(22, gError.message.length - 2);
-  }
 
+  }
+ 
   return (
     <div>
       <div className="card w-[80%] lg:w-1/2 mx-auto mt-20 shadow-xl">
