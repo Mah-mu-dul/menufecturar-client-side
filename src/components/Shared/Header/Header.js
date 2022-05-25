@@ -21,7 +21,7 @@ const Header = () => {
       <li>
         <Link to="blogs">Blogs</Link>
       </li>
-     
+
       {user && (
         <li>
           <Link to="dashboard">Dashboard</Link>
@@ -45,7 +45,7 @@ const Header = () => {
       {user ? (
         <li>
           <button className="  box-none text-black">
-            <Link to="/dashboard/myportfolio">{user.displayName}</Link>
+            <Link to="/dashboard/profile">{user.displayName}</Link>
           </button>
         </li>
       ) : (

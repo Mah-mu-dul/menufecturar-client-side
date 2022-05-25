@@ -26,7 +26,7 @@ const Signup = () => {
     const password = passwordRef.current.value;
     
     const role = "user";
-    const user = {name, email, password, role };
+    const user = {name, email, role };
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
 
@@ -41,7 +41,6 @@ const Signup = () => {
    })
      .then((res) => res.json())
      .then((data) => {
-       alert("item  added sucess fully ");
        event.target.reset();
      });
     navigate("/");

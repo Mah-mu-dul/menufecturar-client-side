@@ -34,7 +34,7 @@ function App() {
         >
           <Route index element={<MyOrders />} />
           <Route path="review" element={<MyReviews />} />
-          <Route path="myportfolio" element={<Myprofile />} />
+          <Route path="profile" element={<Myprofile />} />
           <Route path="addproduct" element={<AddItems />} />
           <Route path="manageproducts" element={<ManageProduct />} />
           <Route path="manageorders" element={<ManageOrders />} />
