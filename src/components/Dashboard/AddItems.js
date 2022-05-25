@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AddItems = () => {
   const nameRef = useRef("");
@@ -23,6 +23,9 @@ const AddItems = () => {
   };
   return (
     <div>
+      <h2 className="text-3xl text-center text-blue-700 font-bold">
+        Add an Item
+      </h2>
       <form className="mx-auto w-[80%] lg:w-[50%] " onSubmit={handlesubmit}>
         <label className="label  text-black">
           <span className="label-text text-black">Product Name</span>
@@ -71,17 +74,34 @@ const AddItems = () => {
             />
           </span>
         </div>
-        <div className="w-1/2 mx-auto">
-          <label className="label  ">
-            <span className="label-text text-black">Price per unit</span>
-          </label>
-          <input
-            ref={priceRef}
-            required
-            name="price"
-            type="number"
-            className="mx-auto input input-bordered input-primary w-full "
-          />
+        <div className="flex mt-5">
+          <div className="w-1/2 mx-auto">
+            <label className="label  ">
+              <span className="label-text text-black">Price per unit</span>
+            </label>
+            <input
+              ref={priceRef}
+              required
+              name="price"
+              type="number"
+              className="mx-auto input input-bordered input-primary w-full "
+            />
+          </div>
+          <div className="my-auto mx-auto ">
+            <p> </p>
+            <div class="dropdown">
+              <label tabindex="0" class="btn mt-8 m-1">
+                is this item new?
+              </label>
+              <ul
+                tabindex="0"
+                class="dropdown-content bg-primary menu p-2 shadow  rounded-box w-20"
+              >
+                <li>yes</li>
+                <li>no</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <label className="label  ">
