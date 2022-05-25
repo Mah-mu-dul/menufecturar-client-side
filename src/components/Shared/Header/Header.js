@@ -21,9 +21,7 @@ const Header = () => {
       <li>
         <Link to="blogs">Blogs</Link>
       </li>
-      <li>
-        <Link to="myportfolio">My portforio</Link>
-      </li>
+     
       {user && (
         <li>
           <Link to="dashboard">Dashboard</Link>
@@ -46,8 +44,8 @@ const Header = () => {
       )}
       {user ? (
         <li>
-          <button onClick={handleSignout} className="  box-none text-black">
-            <h4>{user.displayName}</h4>
+          <button className="  box-none text-black">
+            <Link to="/dashboard/myportfolio">{user.displayName}</Link>
           </button>
         </li>
       ) : (
@@ -92,8 +90,8 @@ const Header = () => {
         </div>
         <div className="navbar-end">
           <label
-            for="my-drawer-2"
-            class="  drawer-button lg:hidden mr-4"
+            htmlFor="my-drawer-2"
+            className="  drawer-button lg:hidden mr-4"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

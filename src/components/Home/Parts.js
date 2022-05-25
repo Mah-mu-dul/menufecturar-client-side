@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
-
 const Card = () => {
+  const handleBuy = () => {
+    console.log("clocked");
+  };
   return (
     <div>
       <div className="card w-96 bg-base-100 shadow-xl mx-auto">
@@ -26,10 +28,12 @@ const Card = () => {
             <div className="badge badge-outline">Available: 10,000</div>
           </div>
           <div className="card-actions justify-center">
-            <div className="badge badge-outlin text-red-600">Price: $5 per unit</div>
+            <div className="badge badge-outlin text-red-600">
+              Price: $5 per unit
+            </div>
           </div>
           <div className="mx-auto">
-            <button class="btn gap-2 btn-primary ">
+            <button onClick={handleBuy} className="btn gap-2 btn-primary ">
               Buy now
               <span className="text-2xl">
                 <AiOutlineShoppingCart />

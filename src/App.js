@@ -11,6 +11,12 @@ import Signup from "./components/Signup/Signup";
 import RequreAuth from "./components/Shared/RequireAuth";
 import MyOrders from "./components/Dashboard/MyOrders";
 import MyReviews from "./components/Dashboard/MyReviews";
+import Purchese from "./components/purchese/Purchese";
+import Myprofile from "./components/Dashboard/Myprofile";
+import AddItems from "./components/Dashboard/AddItems";
+import ManageProduct from "./components/Dashboard/ManageProduct";
+import ManageOrders from "./components/Dashboard/ManageOrders";
+import MakeAdmin from "./components/Dashboard/MakeAdmin";
 function App() {
   return (
     <div className="text-black ">
@@ -28,11 +34,24 @@ function App() {
         >
           <Route index element={<MyOrders />} />
           <Route path="review" element={<MyReviews />} />
+          <Route path="myportfolio" element={<Myprofile />} />
+          <Route path="addproduct" element={<AddItems />} />
+          <Route path="manageproducts" element={<ManageProduct />} />
+          <Route path="manageorders" element={<ManageOrders />} />
+          <Route path="makeadmin" element={<MakeAdmin />} />
         </Route>
 
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/purchess"
+          element={
+            <RequreAuth>
+              <Purchese />
+            </RequreAuth>
+          }
+        />
       </Routes>
       <Footer />
     </div>
