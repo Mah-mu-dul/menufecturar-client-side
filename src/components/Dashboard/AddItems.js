@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 const AddItems = () => {
   const nameRef = useRef("");
   const urlref = useRef("");
-  const reviewRef = useRef("");
   const availableRef = useRef("");
   const priceRef = useRef("");
   const minOrderRef = useRef("");
@@ -14,12 +13,36 @@ const AddItems = () => {
   const handlesubmit = (event) => {
     const name = nameRef.current.value;
     const url = urlref.current.value;
-    const review = reviewRef.current.value;
     const available = availableRef.current.value;
     const price = priceRef.current.value;
     const minOrder = minOrderRef.current.value;
     const des = desRef.current.value;
     event.preventDefault();
+
+    const s = {
+      name: name,
+      url: url,
+      available: available,
+      price: price,
+      minOrder: minOrder,
+      des: des,
+    };
+
+    console.log(s);
+
+    fetch("http://localhost:5000/services", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(s),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        alert("item  added sucess fully ");
+        event.target.reset();
+      });
   };
   return (
     <div>
@@ -74,34 +97,17 @@ const AddItems = () => {
             />
           </span>
         </div>
-        <div className="flex mt-5">
-          <div className="w-1/2 mx-auto">
-            <label className="label  ">
-              <span className="label-text text-black">Price per unit</span>
-            </label>
-            <input
-              ref={priceRef}
-              required
-              name="price"
-              type="number"
-              className="mx-auto input input-bordered input-primary w-full "
-            />
-          </div>
-          <div className="my-auto mx-auto ">
-            <p> </p>
-            <div class="dropdown">
-              <label tabindex="0" class="btn mt-8 m-1">
-                is this item new?
-              </label>
-              <ul
-                tabindex="0"
-                class="dropdown-content bg-primary menu p-2 shadow  rounded-box w-20"
-              >
-                <li>yes</li>
-                <li>no</li>
-              </ul>
-            </div>
-          </div>
+        <div className="w-1/2 mx-auto">
+          <label className="label  ">
+            <span className="label-text text-black">Price per unit</span>
+          </label>
+          <input
+            ref={priceRef}
+            required
+            name="price"
+            type="number"
+            className="mx-auto input input-bordered input-primary w-full "
+          />
         </div>
 
         <label className="label  ">

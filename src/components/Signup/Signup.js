@@ -24,8 +24,26 @@ const Signup = () => {
     const name = nameRef.current.value;
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+    
+    const role = "user";
+    const user = {name, email, password, role };
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
+
+
+    
+   fetch("http://localhost:5000/users", {
+     method: "POST",
+     headers: {
+       "content-type": "application/json",
+     },
+     body: JSON.stringify(user),
+   })
+     .then((res) => res.json())
+     .then((data) => {
+       alert("item  added sucess fully ");
+       event.target.reset();
+     });
     navigate("/");
   };
 

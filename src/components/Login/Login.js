@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import bg from '../../images/bg1.png'
+import bg from "../../images/bg1.png";
 
 import {
   useSendPasswordResetEmail,
@@ -35,6 +35,8 @@ const Login = () => {
     let password = passwordRef.current.value;
 
     await signInWithEmailAndPassword(email, password);
+
+
   };
   const location = useLocation();
   const navigate = useNavigate();
@@ -53,17 +55,14 @@ const Login = () => {
 
   if (error) {
     msg = error.message.slice(22, error.message.length - 2);
-    
-
   }
 
   if (gError) {
     msg = gError?.message.slice(22, gError.message.length - 2);
-
   }
- 
+
   return (
-    <div  className="bg-blue-50 py-5 pb-20">
+    <div className="bg-blue-50 py-5 pb-20">
       <div className="card w-[80%] lg:w-1/2 mx-auto mt-20 shadow-xl">
         <div className="card-body">
           <h2 className=" mx-auto text-3xl font-bold">Login</h2>

@@ -2,30 +2,27 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const Card = () => {
- const [services, setServices] = useState([])
+  const [services, setServices] = useState([]);
 
- useEffect(()=>{
-fetch("http://localhost:5000/services")
-.then(res => res.json())
-.then(data => setServices(data))
- },[])
-
-
-
+  useEffect(() => {
+    fetch("http://localhost:5000/services")
+      .then((res) => res.json())
+      .then((data) => setServices(data));
+  }, []);
 
   const handleBuy = () => {
-    console.log('clicked buy btn');
+    console.log("clicked buy btn");
   };
   return (
     <div className="grid grid-cols-1 mt-7  lg:grid-cols-3  md:grid-cols-2  gap-4">
-      {services.map((service) => (
+      {services.map((service, index) => (
         <>
-          <div className="card w-96 bg-base-100 shadow-xl mx-auto">
+          <div
+            key={index + 1}
+            className="card w-96 bg-base-100 shadow-xl mx-auto"
+          >
             <figure>
-              <img
-                src="https://api.lorem.space/image/shoes?w=400&h=225"
-                alt="Shoes"
-              />
+              <img src={service.url} alt={service.name} />
             </figure>
             <div className="card-body">
               <h2 className="card-title">
@@ -34,10 +31,10 @@ fetch("http://localhost:5000/services")
                   <div className="badge badge-secondary">NEW</div>
                 )}
               </h2>
-              <p>{service.description}</p>
+              <p>{service.des}</p>
               <div className="card-actions justify-center">
                 <div className="badge badge-outline">
-                  Minimum Order: {service.minimumOrder}
+                  Minimum Order: {service.minOrder}
                 </div>
                 <div className="badge badge-outline">
                   Available: {service.available}
