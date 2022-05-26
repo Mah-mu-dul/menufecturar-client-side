@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import {
   useCreateUserWithEmailAndPassword,
@@ -13,6 +13,9 @@ const Signup = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const navigate = useNavigate();
+  const location = useLocation();
+
+  let from = location.state?.from?.pathname || "/";
 
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
@@ -24,27 +27,47 @@ const Signup = () => {
     const name = nameRef.current.value;
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    
+
     const role = "user";
-    const user = {name, email, role };
+    const user = { name, email, role };
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
 
-
-    
-   fetch("http://localhost:5000/users", {
-     method: "POST",
-     headers: {
-       "content-type": "application/json",
-     },
-     body: JSON.stringify(user),
-   })
-     .then((res) => res.json())
-     .then((data) => {
-       event.target.reset();
-     });
-    navigate("/");
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        event.target.reset();
+      });
+    navigate(from, { replace: true });
   };
+
+  const handleGogle = () => {
+    signInWithGoogle();
+  };
+  if (gUser) {
+    const info = {
+      name: gUser.user.displayName,
+      email: gUser.user.email,
+      role: 'user'
+    };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(info),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+      });
+    navigate(from, { replace: true });
+  }
 
   let msg;
 
@@ -124,7 +147,7 @@ const Signup = () => {
             </div>
           </form>
           <button
-            onClick={() => signInWithGoogle()}
+            onClick={handleGogle}
             className="btn mx-auto btn-accent text-white w-full"
           >
             <h2 className="text-lg">Continue with goolge</h2>

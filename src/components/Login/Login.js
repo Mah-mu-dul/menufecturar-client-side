@@ -47,9 +47,28 @@ const Login = () => {
 
   useEffect(() => {
     if (user || gUser) {
+
+
       navigate(from, { replace: true });
     }
   }, [user, gUser, from, navigate]);
+  if (gUser) {
+    const info = {
+      name: gUser.user.displayName,
+      email: gUser.user.email,
+      role: "user",
+    };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(info),
+    })
+      .then((res) => res.json())
+      .then((data) => {});
+    navigate(from, { replace: true });
+  }
 
   let msg;
 
