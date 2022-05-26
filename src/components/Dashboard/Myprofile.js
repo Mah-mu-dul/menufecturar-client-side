@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
-import { FaGraduationCap } from "react-icons/fa";
 import { BsFillPencilFill } from "react-icons/bs";
+import { FaGraduationCap } from "react-icons/fa";
 import { GrLocation } from "react-icons/gr";
 
 

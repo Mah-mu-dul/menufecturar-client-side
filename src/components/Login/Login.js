@@ -58,16 +58,18 @@ const Login = () => {
       email: gUser.user.email,
       role: "user",
     };
-    fetch("http://localhost:5000/users", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(info),
-    })
-      .then((res) => res.json())
-      .then((data) => {});
-    navigate(from, { replace: true });
+    // fetch("http://localhost:5000/users", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(info),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {});
+    // navigate(from, { replace: true });
+
+    
   }
 
   let msg;

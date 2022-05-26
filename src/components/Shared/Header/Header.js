@@ -21,6 +21,9 @@ const Header = () => {
       <li>
         <Link to="blogs">Blogs</Link>
       </li>
+      <li>
+        <Link to="portfolio">My portfolio </Link>
+      </li>
 
       {user && (
         <li>

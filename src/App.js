@@ -17,6 +17,8 @@ import AddItems from "./components/Dashboard/AddItems";
 import ManageProduct from "./components/Dashboard/ManageProduct";
 import ManageOrders from "./components/Dashboard/ManageOrders";
 import MakeAdmin from "./components/Dashboard/MakeAdmin";
+import Portfolio from "./components/Home/Portfolio";
+import Error from "./components/Shared/Error";
 function App() {
   return (
     <div className="text-black ">
@@ -24,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/portfolio" element={<Portfolio />} />
         <Route
           path="/dashboard"
           element={
@@ -52,6 +55,8 @@ function App() {
             </RequreAuth>
           }
         />
+
+        <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
     </div>
