@@ -19,6 +19,7 @@ import ManageOrders from "./components/Dashboard/ManageOrders";
 import MakeAdmin from "./components/Dashboard/MakeAdmin";
 import Portfolio from "./components/Home/Portfolio";
 import Error from "./components/Shared/Error";
+import Blog from "./components/Blog/Blog";
 function App() {
   return (
     <div className="text-black ">
@@ -26,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route
           path="/dashboard"
@@ -45,16 +47,18 @@ function App() {
         </Route>
 
         <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
         <Route
-          path="/purchess"
+          path="/service/:id"
           element={
             <RequreAuth>
-              <Purchese />
+              <Purchese/>
             </RequreAuth>
           }
-        />
+        ></Route>
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        
 
         <Route path="*" element={<Error />} />
       </Routes>

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { Link, useNavigate } from "react-router-dom";
 
 const Card = () => {
   const [services, setServices] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch("http://localhost:5000/services")
@@ -10,9 +12,7 @@ const Card = () => {
       .then((data) => setServices(data));
   }, []);
 
-  const handleBuy = () => {
-    console.log("clicked buy btn");
-  };
+  
   return (
     <div className="grid grid-cols-1 mt-7  lg:grid-cols-3  md:grid-cols-2  gap-4">
       {services.map((service, index) => (
@@ -46,12 +46,13 @@ const Card = () => {
                 </div>
               </div>
               <div className="mx-auto">
-                <button onClick={handleBuy} className="btn gap-2 btn-primary ">
-                  Buy now
-                  <span className="text-2xl">
+                <Link to={`/service/${service._id}`}>
+                  <button variant="dark" className="text-2xl btn gap-2 btn-primary">Buy now<span className="text-2xl">
                     <AiOutlineShoppingCart />
-                  </span>
-                </button>
+                  </span></button>
+                </Link>
+
+              
               </div>
             </div>
           </div>

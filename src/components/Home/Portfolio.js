@@ -63,7 +63,7 @@ const Portfolio = () => {
           <span className="flex justify-between">
             <p className="text-2xl flex">skills :</p>
           </span>
-          <ul className="p-4 flex justify-evenly">
+          <ul className="p-4  lg:flex sm:block  justify-evenly">
             <div className="">
               <ul>
                 <li className="flex text-xl my-2">

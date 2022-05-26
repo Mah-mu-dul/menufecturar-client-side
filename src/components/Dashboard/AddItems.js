@@ -114,6 +114,7 @@ const AddItems = () => {
           <span className="label-text text-black">description</span>
         </label>
         <textarea
+          required
           ref={desRef}
           name="des"
           className="textarea textarea-primary w-full"
