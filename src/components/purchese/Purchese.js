@@ -16,7 +16,7 @@ const Purchese = () => {
   const AdressRef = useRef("");
 
   useEffect(() => {
-    const url = `http://localhost:5000/services/${id}`;
+    const url = `https://gentle-oasis-35718.herokuapp.com/services/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setItem(data));
@@ -24,7 +24,8 @@ const Purchese = () => {
   let available = item.available;
   let minOrder = item.minOrder;
   let img = item.url;
-  let quantity = QuanityRef.current.value;
+
+  console.log(available, quntt, minOrder);
   const handlesubmit = (event) => {
     event.preventDefault();
     const phone = phoneRef.current.value;
@@ -42,12 +43,11 @@ const Purchese = () => {
       img,
       price,
       phone,
-      starus:'unpaid',
+      starus: "unpaid",
       quantity,
       adress,
     };
-    console.log(order);
-    fetch("http://localhost:5000/order", {
+    fetch("https://gentle-oasis-35718.herokuapp.com/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -60,8 +60,8 @@ const Purchese = () => {
         event.target.reset();
       });
   };
-  const qh = (e) => {
-    console.log(e.target.value);
+  const submit = () => {
+    console.log("clicked");
   };
 
   return (
@@ -126,7 +126,7 @@ const Purchese = () => {
             <span className="label-text">Quanity</span>
           </label>
           <input
-            defaultValue={0}
+            defaultValue={minOrder}
             required
             onChange={(e) => setQuantity(e.target.value)}
             ref={QuanityRef}
@@ -145,7 +145,7 @@ const Purchese = () => {
             type="text"
             className=" mx-auto input input-bordered input-primary w-full "
           />
-          {quntt > minOrder ? (
+          {quntt < minOrder ? (
             <button className="btn btn-accent mx-auto mt-3 text-white w-full">
               Order
             </button>

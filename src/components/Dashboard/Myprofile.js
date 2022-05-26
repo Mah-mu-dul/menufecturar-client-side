@@ -6,7 +6,6 @@ import { BsFillPencilFill } from "react-icons/bs";
 import { FaGraduationCap } from "react-icons/fa";
 import { GrLocation } from "react-icons/gr";
 
-
 const Myprofile = () => {
   const [users, setUsers] = useState([]);
 
@@ -14,16 +13,15 @@ const Myprofile = () => {
   const email = user.email;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${email}`)
+    fetch(`https://gentle-oasis-35718.herokuapp.com/user/${email}`)
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [email]);
   const you = users[0];
 
-const editEdu = () =>{
-          console.log("edited ");
-
-}
+  const editEdu = () => {
+    console.log("edited ");
+  };
   return (
     <div>
       <div className="mx-auto flex justify-center mt-5">

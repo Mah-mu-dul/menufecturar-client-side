@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-  import { ToastContainer, toast } from "react-toastify";
-
+import { ToastContainer, toast } from "react-toastify";
 
 const AddItems = () => {
   const nameRef = useRef("");
@@ -32,7 +31,7 @@ const AddItems = () => {
 
     console.log(s);
 
-    fetch("http://localhost:5000/services", {
+    fetch("https://gentle-oasis-35718.herokuapp.com/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",

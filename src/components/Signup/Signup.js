@@ -33,7 +33,7 @@ const Signup = () => {
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
 
-    fetch("http://localhost:5000/users", {
+    fetch("https://gentle-oasis-35718.herokuapp.com/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -54,9 +54,9 @@ const Signup = () => {
     const info = {
       name: gUser.user.displayName,
       email: gUser.user.email,
-      role: 'user'
+      role: "user",
     };
-    fetch("http://localhost:5000/users", {
+    fetch("https://gentle-oasis-35718.herokuapp.com/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -64,8 +64,7 @@ const Signup = () => {
       body: JSON.stringify(info),
     })
       .then((res) => res.json())
-      .then((data) => {
-      });
+      .then((data) => {});
     navigate(from, { replace: true });
   }
 

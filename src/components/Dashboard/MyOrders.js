@@ -9,7 +9,7 @@ const MyOrders = () => {
   const email = user.email;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/order/${email}`)
+    fetch(`https://gentle-oasis-35718.herokuapp.com/order/${email}`)
       .then((res) => res.json())
       .then((data) => setOrder(data));
   }, [email]);
@@ -42,7 +42,9 @@ const MyOrders = () => {
                 <td>{order.itemName}</td>
                 <td>{order.quantity}</td>
                 <td>$ {order.quantity * order.price}</td>
-                <td><button className="btn btn-primary">pay</button></td>
+                <td>
+                  <button className="btn btn-primary">pay</button>
+                </td>
               </tr>
             ))}
           </tbody>

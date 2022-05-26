@@ -22,9 +22,12 @@ import Error from "./components/Shared/Error";
 import Blog from "./components/Blog/Blog";
   import { ToastContainer } from "react-toastify";
     import "react-toastify/dist/ReactToastify.css";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "./firebase.init";
 
 
 function App() {
+  const [user, loading] = useAuthState(auth);
   return (
     <div className="text-black ">
       <Header />
@@ -44,10 +47,13 @@ function App() {
           <Route index element={<MyOrders />} />
           <Route path="review" element={<MyReviews />} />
           <Route path="profile" element={<Myprofile />} />
+
           <Route path="addproduct" element={<AddItems />} />
           <Route path="manageproducts" element={<ManageProduct />} />
           <Route path="manageorders" element={<ManageOrders />} />
           <Route path="makeadmin" element={<MakeAdmin />} />
+
+          
         </Route>
 
         <Route path="/about" element={<About />} />
