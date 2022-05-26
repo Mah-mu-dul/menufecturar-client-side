@@ -20,6 +20,10 @@ import MakeAdmin from "./components/Dashboard/MakeAdmin";
 import Portfolio from "./components/Home/Portfolio";
 import Error from "./components/Shared/Error";
 import Blog from "./components/Blog/Blog";
+  import { ToastContainer } from "react-toastify";
+    import "react-toastify/dist/ReactToastify.css";
+
+
 function App() {
   return (
     <div className="text-black ">
@@ -51,18 +55,18 @@ function App() {
           path="/service/:id"
           element={
             <RequreAuth>
-              <Purchese/>
+              <Purchese />
             </RequreAuth>
           }
         ></Route>
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        
 
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
+      <ToastContainer />
     </div>
   );
 }

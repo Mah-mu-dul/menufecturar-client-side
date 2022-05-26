@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+  import { ToastContainer, toast } from "react-toastify";
+
 
 const AddItems = () => {
   const nameRef = useRef("");
@@ -40,7 +42,7 @@ const AddItems = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        alert("item  added sucess fully ");
+        toast.success("Item added sucessfully ");
         event.target.reset();
       });
   };

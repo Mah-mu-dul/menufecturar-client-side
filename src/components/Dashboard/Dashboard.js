@@ -9,9 +9,9 @@ const Dashboard = () => {
         <div className="drawer-content flex flex-col">
           <Outlet />
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side ">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 overflow-y-auto w-2/5 lg:w-auto  ">
+          <ul className="menu p-4 overflow-y-auto w-2/5 lg:w-auto  bg-[#b8cef9]">
             <li>
               <Link to="/dashboard">My orders</Link>
             </li>
