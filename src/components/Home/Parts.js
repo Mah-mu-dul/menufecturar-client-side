@@ -7,7 +7,7 @@ const Card = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://gentle-oasis-35718.herokuapp.com/services")
+    fetch("http://localhost:5000/services")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);

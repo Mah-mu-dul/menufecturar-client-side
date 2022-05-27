@@ -46,7 +46,7 @@ const Header = () => {
       {user ? (
         <li>
           <button className="  box-none text-black">
-            <Link to="/dashboard/profile">{user.displayName}</Link>
+            <Link to="/dashboard">{user.displayName}</Link>
           </button>
         </li>
       ) : (

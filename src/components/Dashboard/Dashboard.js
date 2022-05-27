@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [userFromdb, setUserFromdb] = useState();
 
   // useEffect(() => {
-  //   fetch(`https://gentle-oasis-35718.herokuapp.com/user/${user.email}`)
+  //   fetch(`http://localhost:5000/user/${user.email}`)
   //     .then((res) => res.json())
   //     .then((data) => setUserFromdb(data));
   // }, []);
@@ -24,13 +24,13 @@ const Dashboard = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 overflow-y-auto w-2/5 lg:w-auto  bg-[#b8cef9]">
             <li>
-              <Link to="/dashboard">My orders</Link>
+              <Link to="/dashboard">Profile</Link>
             </li>
             <li>
               <Link to="/dashboard/review">Add a review</Link>
             </li>
             <li>
-              <Link to="/dashboard/profile">Profile</Link>
+              <Link to="/dashboard/myorders">My orders</Link>
             </li>
 
             {/* {userFromdb[0]?.role === "admin" ? (
