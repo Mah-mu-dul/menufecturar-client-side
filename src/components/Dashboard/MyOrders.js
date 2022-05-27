@@ -70,7 +70,7 @@ const MyOrders = () => {
                     </button>
                   ) : (
                     <>
-                      <h1 className="text-3 font-bold">Paid</h1>
+                      <h1 className="text-3 font-bold">{order.status}</h1>
                     </>
                   )}
                 </td>

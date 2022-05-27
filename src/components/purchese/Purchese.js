@@ -6,7 +6,14 @@ import { ToastContainer, toast } from "react-toastify";
 
 const Purchese = () => {
   const [item, setItem] = useState({});
-  const [quntt, setQuantity] = useState();
+  // console.log(item.minOrder);
+  // console.log(quntt);
+  // if (q > 200){
+  //   console.log('boro')
+  // }
+  // else{
+  //   console.log('choto');
+  // }
 
   const { id } = useParams();
   const [user, loading] = useAuthState(auth);
@@ -25,7 +32,6 @@ const Purchese = () => {
   let minOrder = item.minOrder;
   let img = item.url;
 
-  console.log(available, quntt, minOrder);
   const handlesubmit = (event) => {
     event.preventDefault();
     const phone = phoneRef.current.value;
@@ -63,6 +69,10 @@ const Purchese = () => {
   const submit = () => {
     console.log("clicked");
   };
+  // const min = item.minOrder;
+  // const max = item.available;
+  // let q = quntt;
+  const [quntt, setQuantity] = useState(item?.minOrder);
 
   return (
     <div className="lg:flex sm:block justify-around">
@@ -126,10 +136,11 @@ const Purchese = () => {
             <span className="label-text">Quanity</span>
           </label>
           <input
-            defaultValue={minOrder}
             required
-            onChange={(e) => setQuantity(e.target.value)}
-            ref={QuanityRef}
+            defaultValue={item.minOrder}
+            min={item.minOrder}
+            // onChange={(e) => setQuantity(e.target.value)}
+            // ref={QuanityRef}
             name="Quanity"
             type="number"
             className=" mx-auto input input-bordered input-primary w-full "
@@ -145,14 +156,11 @@ const Purchese = () => {
             type="text"
             className=" mx-auto input input-bordered input-primary w-full "
           />
-
-          <button className="btn btn-accent mx-auto mt-3 text-white w-full">
-            Order
-          </button>
-          {/*        
-            <button className="btn text-black  btn-disabled hover:text-white mx-auto mt-3  w-full">
+          
+            <button className="btn btn-accent mx-auto mt-3 text-white w-full">
               Order
-            </button> */}
+            </button>
+        
         </form>
       </div>
       <ToastContainer />
