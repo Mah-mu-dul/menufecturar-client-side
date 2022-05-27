@@ -75,7 +75,7 @@ const ManageProduct = () => {
           </tbody>
         </table>
       </div>
-      {prod && <ManageProductModal prod={prod}></ManageProductModal>}
+      {prod && <ManageProductModal prod={prod} setProduct={setProduct}/>}
     </div>
   );
 };

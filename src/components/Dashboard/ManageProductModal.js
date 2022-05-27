@@ -1,9 +1,24 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
-const ManageProductModal = ({prod}) => {
-    console.log(prod);
+const ManageProductModal = ({prod},{setProduct}) => {
   
     const handleDelete = async (id) => {
+       console.log('clicked delete');
+        // const url = `http://localhost:5000/service/${id}`;
+        // fetch(url, {
+        //   method: "DELETE"
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     toast("Item deleted");
+        //     const remaining = prod.filter((product) => product._id !== id);
+
+        //     // console.log(remaining);
+
+        //     setProduct(remaining);
+        //   });
+
      
     };
     return (
