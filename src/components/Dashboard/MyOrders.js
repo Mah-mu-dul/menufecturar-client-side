@@ -10,7 +10,7 @@ const MyOrders = () => {
   const email = user.email;
 
   useEffect(() => {
-    fetch(`https://gentle-oasis-35718.herokuapp.com/orders/${email}`)
+    fetch(`http://localhost:5000/orders/${email}`)
       .then((res) => res.json())
       .then((data) => setOrder(data));
   }, [email]);
@@ -18,7 +18,7 @@ const MyOrders = () => {
     const status = "paid";
     const order = { status };
 
-    const url = `https://gentle-oasis-35718.herokuapp.com/order/${id}`;
+    const url = `http://localhost:5000/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {

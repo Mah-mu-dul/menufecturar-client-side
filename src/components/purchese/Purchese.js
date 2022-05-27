@@ -23,7 +23,7 @@ const Purchese = () => {
   const AdressRef = useRef("");
 
   useEffect(() => {
-    const url = `https://gentle-oasis-35718.herokuapp.com/services/${id}`;
+    const url = `http://localhost:5000/services/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setItem(data));
@@ -34,12 +34,14 @@ const Purchese = () => {
 
   const handlesubmit = (event) => {
     event.preventDefault();
+    
     const phone = phoneRef.current.value;
-    let quantity = QuanityRef.current.value;
+    let quantity = quntt || item.minOrder 
     const adress = AdressRef.current.value;
     const itemName = item.name;
     let minOrder = item.minOrder;
     const price = item.price;
+
 
     const order = {
       name: user.displayName,
@@ -53,18 +55,19 @@ const Purchese = () => {
       quantity,
       adress,
     };
-    fetch("https://gentle-oasis-35718.herokuapp.com/order", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(order),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        toast.success("Order comfirmed");
-        event.target.reset();
-      });
+    console.log(order);
+    // fetch("http://localhost:5000/order", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(order),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     toast.success("Order comfirmed");
+    //     event.target.reset();
+    //   });
   };
   const submit = () => {
     console.log("clicked");
@@ -140,7 +143,7 @@ const Purchese = () => {
             defaultValue={item.minOrder}
             min={item.minOrder}
             max={item.available}
-            // onChange={(e) => setQuantity(e.target.value)}
+            onChange={(e) => setQuantity(e.target.value)}
             // ref={QuanityRef}
             name="Quanity"
             type="number"
@@ -157,11 +160,10 @@ const Purchese = () => {
             type="text"
             className=" mx-auto input input-bordered input-primary w-full "
           />
-          
-            <button className="btn btn-accent mx-auto mt-3 text-white w-full">
-              Order
-            </button>
-        
+
+          <button className="btn btn-accent mx-auto mt-3 text-white w-full">
+            Order
+          </button>
         </form>
       </div>
       <ToastContainer />
