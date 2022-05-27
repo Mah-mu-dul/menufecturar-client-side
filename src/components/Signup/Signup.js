@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import {
@@ -33,18 +33,18 @@ const Signup = () => {
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
 
-    fetch("https://gentle-oasis-35718.herokuapp.com/users", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        event.target.reset();
-      });
-    navigate(from, { replace: true });
+      fetch("https://gentle-oasis-35718.herokuapp.com/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          event.target.reset();
+        });
+      navigate(from, { replace: true });
   };
 
   const handleGogle = () => {
@@ -56,7 +56,7 @@ const Signup = () => {
       email: gUser.user.email,
       role: "user",
     };
-    fetch("https://gentle-oasis-35718.herokuapp.com/users", {
+    fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

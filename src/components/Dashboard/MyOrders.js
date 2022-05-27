@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import Loading from "../Shared/Loading";
 
 const MyOrders = () => {
   const [orders, setOrder] = useState([]);
@@ -18,7 +19,7 @@ const MyOrders = () => {
     const status = "paid";
     const order = { status };
 
-    const url = `https://gentle-oasis-35718.herokuapp.com/order/${id}`;
+    const url = `http://localhost:5000/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -28,13 +29,16 @@ const MyOrders = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        toast.success("make shiped sucessfull");
+        toast.success("paid successfull");
         window.location.reload();
         console.log("shipped for ", id);
       });
     console.log("clicked");
   };
   console.log(orders);
+  if(loading){
+    <Loading/>
+  }
   return (
     <div>
       <div className="overflow-x-auto">
@@ -65,7 +69,7 @@ const MyOrders = () => {
                 <td>$ {order.quantity * order.price}</td>
                 <td>
                   {order.status === "unpaid" ? (
-                    <button onClick={paymentHandle} className="btn btn-primary">
+                    <button onClick={() => paymentHandle(order._id)} className="btn btn-primary">
                       pay
                     </button>
                   ) : (
