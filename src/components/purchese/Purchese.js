@@ -43,7 +43,7 @@ const Purchese = () => {
       img,
       price,
       phone,
-      starus: "unpaid",
+      status: "unpaid",
       quantity,
       adress,
     };

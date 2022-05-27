@@ -1,15 +1,34 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const ManageOrders = () => {
   const [orders, setOrders] = useState();
-  const [services, setServices] = useState([]);
 
   useEffect(() => {
     fetch("https://gentle-oasis-35718.herokuapp.com/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
-  console.log(orders);
+  const shipedHandle = (id) => {
+    const status = "shiped";
+    const order = { status };
+
+    const url = `http://localhost:5000/order/${id}`;
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("make shiped sucessfull");
+        window.location.reload();
+      });
+    console.log("shipped for ", id);
+  };
+
   return (
     <div>
       <div class="overflow-x-auto">
@@ -19,6 +38,7 @@ const ManageOrders = () => {
               <th>No.</th>
               <th>Image</th>
               <th>Name</th>
+              <th>Email</th>
               <th>Quantity</th>
               <th>status</th>
               <th>pay </th>
@@ -36,10 +56,22 @@ const ManageOrders = () => {
                   </div>
                 </td>
                 <td>{order?.itemName}</td>
+                <td>{order?.email}</td>
                 <td>{order?.quantity}</td>
-                <td>Panding</td>
+                <td>{order?.status}</td>
                 <td>
-                  <button className="btn btn-primary">pay</button>
+                  {order.status === "paid" ? (
+                    <button
+                      onClick={() => shipedHandle(order._id)}
+                      className="btn btn-primary"
+                    >
+                      Ship
+                    </button>
+                  ) : (
+                    <>
+                     
+                    </>
+                  )}
                 </td>
               </tr>
             ))}
