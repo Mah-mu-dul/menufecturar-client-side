@@ -7,7 +7,7 @@ const MakeAdmin = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://gentle-oasis-35718.herokuapp.com/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, []);
@@ -19,7 +19,7 @@ const MakeAdmin = () => {
 
     console.log("clicked");
 
-    const url = `http://localhost:5000/users/${id}`;
+    const url = `https://gentle-oasis-35718.herokuapp.com/users/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {

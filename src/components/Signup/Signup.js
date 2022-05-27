@@ -33,7 +33,7 @@ const Signup = () => {
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
 
-    fetch("http://localhost:5000/users", {
+    fetch("https://gentle-oasis-35718.herokuapp.com/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -56,7 +56,7 @@ const Signup = () => {
       email: gUser.user.email,
       role: "user",
     };
-    fetch("http://localhost:5000/users", {
+    fetch("https://gentle-oasis-35718.herokuapp.com/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

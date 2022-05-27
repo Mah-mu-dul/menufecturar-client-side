@@ -5,7 +5,7 @@ const ManageOrders = () => {
   const [orders, setOrders] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:5000/orders")
+    fetch("https://gentle-oasis-35718.herokuapp.com/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
@@ -13,7 +13,7 @@ const ManageOrders = () => {
     const status = "shiped";
     const order = { status };
 
-    const url = `http://localhost:5000/order/${id}`;
+    const url = `https://gentle-oasis-35718.herokuapp.com/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {

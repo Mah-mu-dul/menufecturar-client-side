@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [userFromdb, setUserFromdb] = useState();
 
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/user/${user.email}`)
+  //   fetch(`https://gentle-oasis-35718.herokuapp.com/user/${user.email}`)
   //     .then((res) => res.json())
   //     .then((data) => setUserFromdb(data));
   // }, []);

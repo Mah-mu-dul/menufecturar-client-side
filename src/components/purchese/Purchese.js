@@ -16,7 +16,7 @@ const Purchese = () => {
   const AdressRef = useRef("");
 
   useEffect(() => {
-    const url = `http://localhost:5000/services/${id}`;
+    const url = `https://gentle-oasis-35718.herokuapp.com/services/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setItem(data));
@@ -47,7 +47,7 @@ const Purchese = () => {
       quantity,
       adress,
     };
-    fetch("http://localhost:5000/order", {
+    fetch("https://gentle-oasis-35718.herokuapp.com/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",
