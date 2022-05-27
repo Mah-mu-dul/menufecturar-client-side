@@ -49,33 +49,17 @@ const MyReviews = () => {
         <textarea className="textarea textarea-primary w-full" placeholder="" />
 
         <div className="">
-          <div class="rating">
+          <div className="rating">
+            <input type="radio" name="rating-1" className="mask mask-star  " />
             <input
               type="radio"
               name="rating-1"
-              class="mask mask-star  "
-            />
-            <input
-              type="radio"
-              name="rating-1"
-              class="mask mask-star  "
+              className="mask mask-star  "
               checked
             />
-            <input
-              type="radio"
-              name="rating-1"
-              class="mask mask-star  "
-            />
-            <input
-              type="radio"
-              name="rating-1"
-              class="mask mask-star  "
-            />
-            <input
-              type="radio"
-              name="rating-1"
-              class="mask mask-star  "
-            />
+            <input type="radio" name="rating-1" className="mask mask-star  " />
+            <input type="radio" name="rating-1" className="mask mask-star  " />
+            <input type="radio" name="rating-1" className="mask mask-star  " />
           </div>
         </div>
 

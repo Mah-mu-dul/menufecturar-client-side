@@ -13,7 +13,7 @@ const ManageOrders = () => {
     const status = "shiped";
     const order = { status };
 
-    const url = `http://localhost:5000/order/${id}`;
+    const url = `https://gentle-oasis-35718.herokuapp.com/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -31,8 +31,8 @@ const ManageOrders = () => {
 
   return (
     <div>
-      <div class="overflow-x-auto">
-        <table class="table w-full">
+      <div className="overflow-x-auto">
+        <table className="table w-full">
           <thead>
             <tr className="text-white">
               <th>No.</th>
@@ -49,8 +49,8 @@ const ManageOrders = () => {
               <tr>
                 <th>{i + 1}</th>
                 <td>
-                  <div class="avatar w-[50px]">
-                    <div class="w-24 rounded-xl">
+                  <div className="avatar w-[50px]">
+                    <div className="w-24 rounded-xl">
                       <img src={order?.img} />
                     </div>
                   </div>
@@ -68,9 +68,7 @@ const ManageOrders = () => {
                       Ship
                     </button>
                   ) : (
-                    <>
-                     
-                    </>
+                    <></>
                   )}
                 </td>
               </tr>

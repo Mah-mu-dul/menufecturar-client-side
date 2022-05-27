@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Outlet } from "react-router-dom";
 import auth from "../../firebase.init";
 
 const Dashboard = () => {
-    const [user, loading] = useAuthState(auth);
-    console.log(user);
+  const [user, loading] = useAuthState(auth);
+  const [userFromdb, setUserFromdb] = useState();
+
+  // useEffect(() => {
+  //   fetch(`https://gentle-oasis-35718.herokuapp.com/user/${user.email}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setUserFromdb(data));
+  // }, []);
 
   return (
     <div>
@@ -27,6 +33,8 @@ const Dashboard = () => {
               <Link to="/dashboard/profile">Profile</Link>
             </li>
 
+            {/* {userFromdb[0]?.role === "admin" ? (
+              <> */}
             <li>
               <Link to="/dashboard/makeadmin">Make Admin</Link>
             </li>
@@ -39,6 +47,10 @@ const Dashboard = () => {
             <li>
               <Link to="/dashboard/addproduct">Add a product</Link>
             </li>
+            {/* </>
+            ) : (
+              <></>
+            )} */}
           </ul>
         </div>
       </div>
