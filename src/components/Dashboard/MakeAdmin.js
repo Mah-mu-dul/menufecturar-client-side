@@ -29,7 +29,7 @@ const MakeAdmin = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        toast("item  dalivared ");
+        toast("make admin sucessfull");
         window.location.reload();
       });
   };
