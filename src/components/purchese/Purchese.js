@@ -139,6 +139,7 @@ const Purchese = () => {
             required
             defaultValue={item.minOrder}
             min={item.minOrder}
+            max={item.available}
             // onChange={(e) => setQuantity(e.target.value)}
             // ref={QuanityRef}
             name="Quanity"
