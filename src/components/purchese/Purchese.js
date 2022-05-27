@@ -55,18 +55,18 @@ const Purchese = () => {
       adress,
     };
     console.log(order);
-    // fetch("https://gentle-oasis-35718.herokuapp.com/order", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(order),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     toast.success("Order comfirmed");
-    //     event.target.reset();
-    //   });
+    fetch("https://gentle-oasis-35718.herokuapp.com/order", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Order comfirmed");
+        event.target.reset();
+      });
   };
   const submit = () => {
     console.log("clicked");
