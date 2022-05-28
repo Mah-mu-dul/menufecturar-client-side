@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [userFromdb, setUserFromdb] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${user.email}`)
+    fetch(`https://gentle-oasis-35718.herokuapp.com/user/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setUserFromdb(data);
@@ -32,7 +32,6 @@ const Dashboard = () => {
         <div className="drawer-side ">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 overflow-y-auto w-2/5 lg:w-auto  bg-[#b8cef9]">
-
             <li>
               <Link to="/dashboard">Profile</Link>
             </li>

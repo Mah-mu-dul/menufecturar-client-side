@@ -13,7 +13,7 @@ const Myprofile = () => {
   const email = user.email;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/profile/${email}`)
+    fetch(`https://gentle-oasis-35718.herokuapp.com/profile/${email}`)
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [email]);

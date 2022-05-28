@@ -27,7 +27,7 @@ const MyReviews = () => {
       displayName,
       email,
     };
-    fetch("http://localhost:5000/review", {
+    fetch("https://gentle-oasis-35718.herokuapp.com/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -13,7 +13,7 @@ const MyOrders = () => {
   useEffect(() => {
     const getItem = async (user) => {
       const email = user.email;
-      const url = `http://localhost:5000/orders/${email}`;
+      const url = `https://gentle-oasis-35718.herokuapp.com/orders/${email}`;
       const { data } = await axios.get(url, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -30,7 +30,7 @@ const MyOrders = () => {
     const status = "paid";
     const order = { status };
 
-    const url = `http://localhost:5000/order/${id}`;
+    const url = `https://gentle-oasis-35718.herokuapp.com/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {

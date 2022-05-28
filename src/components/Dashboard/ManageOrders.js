@@ -6,23 +6,21 @@ import Loading from "../Shared/Loading";
 const ManageOrders = () => {
   // const [orders, setOrders] = useState();
 
-// experiment 
-const { data: orders, isLoading } = useQuery(
-  "available",
-  () => fetch("http://localhost:5000/orders")
-      .then((res) => res.json())
-);
+  // experiment
+  const { data: orders, isLoading } = useQuery("available", () =>
+    fetch("https://gentle-oasis-35718.herokuapp.com/orders").then((res) =>
+      res.json()
+    )
+  );
 
- if (isLoading) {
-   return <Loading></Loading>;
- }
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
-
-
-// experiment 
+  // experiment
 
   // useEffect(() => {
-  //   fetch("http://localhost:5000/orders")
+  //   fetch("https://gentle-oasis-35718.herokuapp.com/orders")
   //     .then((res) => res.json())                              // i just    leave it to remember the process
   //     .then((data) => setOrders(data));
   // }, []);
@@ -30,7 +28,7 @@ const { data: orders, isLoading } = useQuery(
     const status = "shiped";
     const order = { status };
 
-    const url = `http://localhost:5000/order/${id}`;
+    const url = `https://gentle-oasis-35718.herokuapp.com/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {

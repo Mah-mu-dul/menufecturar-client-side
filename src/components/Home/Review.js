@@ -6,7 +6,7 @@ const Review = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/reviews")
+    fetch("https://gentle-oasis-35718.herokuapp.com/reviews")
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
