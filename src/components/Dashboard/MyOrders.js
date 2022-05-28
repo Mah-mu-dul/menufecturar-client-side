@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
@@ -8,13 +9,25 @@ const MyOrders = () => {
   const [orders, setOrder] = useState([]);
 
   const [user, loading] = useAuthState(auth);
-  const email = user.email;
 
   useEffect(() => {
-    fetch(`https://gentle-oasis-35718.herokuapp.com/orders/${email}`)
-      .then((res) => res.json())
-      .then((data) => setOrder(data));
-  }, [email]);
+    const getItem = async (user) => {
+      const email = user.email;
+      console.log(email);
+      const url = `http://localhost:5000/orders/${email}`;
+
+      const { data } = await axios.get(url, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
+      // console.log(data);
+
+      setOrder(data);
+    };
+    getItem(user);
+  }, [user]);
+
   const paymentHandle = (id) => {
     const status = "paid";
     const order = { status };

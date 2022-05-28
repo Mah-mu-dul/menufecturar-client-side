@@ -4,18 +4,22 @@ import { Link, Outlet } from "react-router-dom";
 import auth from "../../firebase.init";
 
 const Dashboard = () => {
-  const [user, loading] = useAuthState(auth);
-  const [userFromdb, setUserFromdb] = useState([{role:'user'}]);
-
+  const [user] = useAuthState(auth);
+  const [userFromdb, setUserFromdb] = useState([]);
+const [loading , setLoading] =useState (true)
   useEffect(() => {
     fetch(`http://localhost:5000/user/${user.email}`)
       .then((res) => res.json())
       .then((data) => 
-      setUserFromdb(data)
+      {setUserFromdb(data)
+      setLoading(false )}
       )
   }, [user]);
   console.log(userFromdb);
 
+  if(loading){
+    return <p>loading...</p>
+  }
 
   return (
     <div>
@@ -27,13 +31,12 @@ const Dashboard = () => {
         <div className="drawer-side ">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 overflow-y-auto w-2/5 lg:w-auto  bg-[#b8cef9]">
-            <h1>{userFromdb[0].role}</h1>
 
             <li>
               <Link to="/dashboard">Profile</Link>
             </li>
 
-            {/* {userFromdb[0].roll === "admin" ? ( */}
+            {userFromdb?.[0]?.role === "admin" ? (
               <>
                 <li>
                   <Link to="/dashboard/makeadmin">Make Admin</Link>
@@ -48,7 +51,7 @@ const Dashboard = () => {
                   <Link to="/dashboard/addproduct">Add a product</Link>
                 </li>
               </>
-            {/* ) : ( */}
+             ) : ( 
               <>
                 <li>
                   <Link to="/dashboard/review">Add a review</Link>
@@ -57,7 +60,7 @@ const Dashboard = () => {
                   <Link to="/dashboard/myorders">My orders</Link>
                 </li>
               </>
-            {/* )} */}
+             )} 
           </ul>
         </div>
       </div>

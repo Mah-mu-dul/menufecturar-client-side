@@ -17,8 +17,6 @@ const Review = () => {
   if (loading) {
     return <Loading />;
   }
-  console.log(reviews);
-  console.log(loading);
   return (
     <div>
       <h1 className="text-center text-4xl text-secondary">
@@ -34,8 +32,8 @@ const Review = () => {
               >
                 <div className="flex">
                   {review.url && (
-                    <div class="avatar">
-                      <div class="w-24 rounded-xl">
+                    <div className="avatar">
+                      <div className="w-24 rounded-xl">
                         <img src={review.url} />
                       </div>
                     </div>

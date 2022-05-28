@@ -9,6 +9,7 @@ import {
 } from "react-firebase-hooks/auth";
 import { reload } from "firebase/auth";
 import auth from "../../firebase.init";
+import axios from "axios";
 
 const Login = () => {
   const resetPassword = async () => {
@@ -28,6 +29,10 @@ const Login = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  let from = location.state?.from?.pathname || "/";
+
   const handlesubmit = async (event) => {
     event.preventDefault();
 
@@ -36,19 +41,18 @@ const Login = () => {
 
     await signInWithEmailAndPassword(email, password);
 
-
+    const { data } = await axios.post("http://localhost:5000/login", {
+      email,
+    });
+    localStorage.setItem("accessToken", data.token);
+    navigate(from, { replace: true });
   };
-  const location = useLocation();
-  const navigate = useNavigate();
-  let from = location.state?.from?.pathname || "/";
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
   //  we use useEffect to solve a warning  Cannot update a component (`BrowserRouter`) while rendering a different component (`Login`). To locate the bad setState() call inside `Login`, follow the stack trace as described
 
   useEffect(() => {
     if (user || gUser) {
-
-
       navigate(from, { replace: true });
     }
   }, [user, gUser, from, navigate]);
@@ -59,12 +63,8 @@ const Login = () => {
       role: "user",
     };
     //add fetch to update user
-
-    
   }
 
-
-  
   let msg;
 
   if (error) {
@@ -105,7 +105,7 @@ const Login = () => {
             </span>
 
             <div className="card-actions flex-col  justify-center">
-              {( loading ||  gLoading || sending)? (
+              {loading || gLoading || sending ? (
                 <button className="btn btn-accent mx-auto mt-3 text-white w-full loading">
                   loading
                 </button>

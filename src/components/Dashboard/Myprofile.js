@@ -12,6 +12,9 @@ const Myprofile = () => {
   const [user, loading] = useAuthState(auth);
   const email = user.email;
 
+
+  
+
   useEffect(() => {
     fetch(`https://gentle-oasis-35718.herokuapp.com/profile/${email}`)
       .then((res) => res.json())
@@ -61,9 +64,12 @@ const Myprofile = () => {
 
             <li>
               <div className="flex justify-center">
-                <button className="border-blue-500  mt-5 border p-3 px-5 text-xl  rounded">
-                  Add new Education
-                </button>{" "}
+                <input
+                  // ref={eduref}
+                  name="email"
+                  type="email"
+                  className="mx-auto input input-bordered input-primary w-full "
+                />
               </div>
             </li>
           </ul>
