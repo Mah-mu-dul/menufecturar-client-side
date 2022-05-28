@@ -32,11 +32,11 @@ const ManageProduct = () => {
           </thead>
           <tbody>
             {product.map((product, i) => (
-              <tr>
+              <tr key={i + 1}>
                 <th>{i + 1}</th>
                 <td>
-                  <div class="avatar">
-                    <div class="w-20 rounded">
+                  <div className="avatar">
+                    <div className="w-20 rounded">
                       <img
                         src={product.url}
                         alt="Tailwind-CSS-Avatar-component"
@@ -51,11 +51,11 @@ const ManageProduct = () => {
 
                 <td>
                   <label
-                    for="my-modal-6"
+                    htmlFor="my-modal-6"
                     onClick={() => {
                       setProd(product);
                     }}
-                    class="btn btn-secondary modal-button"
+                    className="btn btn-secondary modal-button"
                   >
                     Delete
                   </label>
@@ -75,7 +75,7 @@ const ManageProduct = () => {
           </tbody>
         </table>
       </div>
-      {prod && <ManageProductModal prod={prod} setProduct={setProduct}/>}
+      {prod && <ManageProductModal prod={prod} setProduct={setProduct} />}
     </div>
   );
 };

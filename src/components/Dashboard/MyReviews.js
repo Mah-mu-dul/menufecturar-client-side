@@ -6,7 +6,7 @@ import auth from "../../firebase.init";
 
 const MyReviews = () => {
   const [user, Loading] = useAuthState(auth);
-  const {displayName, email}= user
+  const { displayName, email } = user;
   const nameRef = useRef("");
   const urlref = useRef("");
   const ratingref = useRef("");
@@ -25,9 +25,9 @@ const MyReviews = () => {
       rating,
       review,
       displayName,
-      email
+      email,
     };
-    fetch("http://localhost:5000/review", {
+    fetch("https://gentle-oasis-35718.herokuapp.com/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -40,8 +40,6 @@ const MyReviews = () => {
         event.target.reset();
       });
   };
-
- 
 
   return (
     <div className="">

@@ -14,10 +14,10 @@ const Card = () => {
 
   return (
     <div className="grid grid-cols-1 mt-7  lg:grid-cols-3  md:grid-cols-2  gap-4">
-      {services.map((service, index) => (
-        <>
+      {services.map((service, i) => (
+        
           <div
-            key={index + 1}
+            key={i + 1}
             className="card w-96 bg-base-100 shadow-xl mx-auto"
           >
             <figure>
@@ -59,7 +59,7 @@ const Card = () => {
               </div>
             </div>
           </div>
-        </>
+        
       ))}
     </div>
   );

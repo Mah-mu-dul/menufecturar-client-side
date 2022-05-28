@@ -6,38 +6,51 @@ const Review = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/reviews")
+    fetch("https://gentle-oasis-35718.herokuapp.com/reviews")
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
         setLoading(false);
       });
   }, []);
-  
+
   if (loading) {
-    return <Loading />
+    return <Loading />;
   }
   console.log(reviews);
   console.log(loading);
   return (
     <div>
       <h1 className="text-center text-4xl text-secondary">
-        this is reviewsection
+        this is reviewsection for test
       </h1>
       <div className="mx-5 px-10 ">
         <ul>
-          {/* {reviews?.map((review) => (
-            <li className="border-2 p-5 my-2 border-blue-200 rounded">
-              <h2 className="lg:text-6xl sm:text-2xl font-bold">
-                {review.name}
-              </h2>
-              <h2 className="lg:text-4xl sm:text-xl font-bold">
-                {review.displayName}
-              </h2>
-              <h2 className="text-xl font-bold">{review.email}</h2>
-              <h2 className="text-xl">{review.review}</h2>
-            </li>
-          ))} */}
+          {reviews.length > 0 &&
+            reviews.map((review, i) => (
+              <li
+                key={i + 1}
+                className=" border-2 rounded  border-blue-50 p-10 my-5 "
+              >
+                <div className="flex">
+                  {review.url && (
+                    <div class="avatar">
+                      <div class="w-24 rounded-xl">
+                        <img src={review.url} />
+                      </div>
+                    </div>
+                  )}
+                  <span className="mx-20">
+                    <h1 className="text-5xl text-amber-300">{review.name}</h1>
+                    <h1 className="text-xl">
+                      Review by : {review.displayName}
+                    </h1>
+                    <h1 className="text-xl "> contact to : {review.email}</h1>
+                  </span>
+                </div>
+                <p>{review.review}</p>
+              </li>
+            ))}
         </ul>
       </div>
     </div>

@@ -47,7 +47,7 @@ const ManageOrders = () => {
           </thead>
           <tbody>
             {orders?.map((order, i) => (
-              <tr>
+              <tr key={i+1}>
                 <th>{i + 1}</th>
                 <td>
                   <div className="avatar w-[50px]">

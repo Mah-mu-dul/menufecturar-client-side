@@ -19,7 +19,7 @@ const MyOrders = () => {
     const status = "paid";
     const order = { status };
 
-    const url = `http://localhost:5000/order/${id}`;
+    const url = `https://gentle-oasis-35718.herokuapp.com/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -36,8 +36,8 @@ const MyOrders = () => {
     console.log("clicked");
   };
   console.log(orders);
-  if(loading){
-    <Loading/>
+  if (loading) {
+    <Loading />;
   }
   return (
     <div>
@@ -69,7 +69,10 @@ const MyOrders = () => {
                 <td>$ {order.quantity * order.price}</td>
                 <td>
                   {order.status === "unpaid" ? (
-                    <button onClick={() => paymentHandle(order._id)} className="btn btn-primary">
+                    <button
+                      onClick={() => paymentHandle(order._id)}
+                      className="btn btn-primary"
+                    >
                       pay
                     </button>
                   ) : (

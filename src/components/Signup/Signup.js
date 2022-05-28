@@ -7,6 +7,7 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import useToken from "../../hooks/useToken";
 
 const Signup = () => {
   const nameRef = useRef("");
@@ -22,6 +23,8 @@ const Signup = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
+  const [token] = useToken(user || gUser);
+
   const handlesubmit = async (event) => {
     event.preventDefault();
     const name = nameRef.current.value;
@@ -33,18 +36,18 @@ const Signup = () => {
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
 
-      fetch("https://gentle-oasis-35718.herokuapp.com/users", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(user),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          event.target.reset();
-        });
-      navigate(from, { replace: true });
+    fetch("https://gentle-oasis-35718.herokuapp.com/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        event.target.reset();
+      });
+    navigate(from, { replace: true });
   };
 
   const handleGogle = () => {
@@ -56,7 +59,7 @@ const Signup = () => {
       email: gUser.user.email,
       role: "user",
     };
-    fetch("http://localhost:5000/users", {
+    fetch("https://gentle-oasis-35718.herokuapp.com/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

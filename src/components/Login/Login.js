@@ -63,6 +63,8 @@ const Login = () => {
     
   }
 
+
+  
   let msg;
 
   if (error) {
@@ -103,7 +105,7 @@ const Login = () => {
             </span>
 
             <div className="card-actions flex-col  justify-center">
-              {loading ? (
+              {( loading ||  gLoading || sending)? (
                 <button className="btn btn-accent mx-auto mt-3 text-white w-full loading">
                   loading
                 </button>
