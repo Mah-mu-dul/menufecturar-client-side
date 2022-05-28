@@ -8,6 +8,7 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import useToken from "../../hooks/useToken";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const nameRef = useRef("");
@@ -23,7 +24,7 @@ const Signup = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-  const [token] = useToken(user || gUser);
+  // const [token] = useToken(user || gUser);
 
   const handlesubmit = async (event) => {
     event.preventDefault();
@@ -36,40 +37,62 @@ const Signup = () => {
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
 
-    fetch("https://gentle-oasis-35718.herokuapp.com/users", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        event.target.reset();
-      });
-    navigate(from, { replace: true });
+
+    // frome here  
+
+ 
+     const url = `http://localhost:5000/users/${email}`;
+     fetch(url, {
+       method: "PUT",
+       headers: {
+         "content-type": "application/json",
+       },
+       body: JSON.stringify(user),
+     })
+       .then((res) => res.json())
+       .then((data) => {
+         console.log(data);
+       });
+
+    // fetch("https://gentle-oasis-35718.herokuapp.com/users", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(user),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     event.target.reset();
+    //   });
+    // navigate(from, { replace: true });
   };
 
   const handleGogle = () => {
     signInWithGoogle();
+
   };
-  if (gUser) {
-    const info = {
-      name: gUser.user.displayName,
-      email: gUser.user.email,
-      role: "user",
-    };
-    fetch("https://gentle-oasis-35718.herokuapp.com/users", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(info),
-    })
-      .then((res) => res.json())
-      .then((data) => {});
-    navigate(from, { replace: true });
-  }
+  // if (gUser) {
+  //   const email = gUser.user.email
+  //   const info = {
+  //     name: gUser.user.displayName,
+  //     email,
+  //     role: "user",
+  //   };
+  //   const url = `http://localhost:5000/users/${email}`;
+  //   fetch(url, {
+  //     method: "PUT",
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(info),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       toast("make admin sucessfull");
+  //       window.location.reload();
+  //     });
+  // }
 
   let msg;
 
@@ -83,6 +106,7 @@ const Signup = () => {
   if (updateError) {
     msg = updateError?.message.slice(22, updateError.message.length - 2);
   }
+
 
   return (
     <div>
