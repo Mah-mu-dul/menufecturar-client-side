@@ -8,7 +8,9 @@ const Header = () => {
   const [user] = useAuthState(auth);
 
   const handleSignout = () => {
+    localStorage.removeItem("accessToken");
     signOut(auth);
+
   };
   const navbarItems = (
     <>
