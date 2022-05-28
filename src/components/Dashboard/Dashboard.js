@@ -6,20 +6,20 @@ import auth from "../../firebase.init";
 const Dashboard = () => {
   const [user] = useAuthState(auth);
   const [userFromdb, setUserFromdb] = useState([]);
-const [loading , setLoading] =useState (true)
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${user.email}`)
+    fetch(`https://gentle-oasis-35718.herokuapp.com/user/${user.email}`)
       .then((res) => res.json())
-      .then((data) => 
-      {setUserFromdb(data)
-      setLoading(false )}
-      )
+      .then((data) => {
+        setUserFromdb(data);
+        setLoading(false);
+      });
   }, [user]);
   console.log(userFromdb);
-  let lod 
+  let lod;
 
-  if(loading){
-    lod = <p>loading...</p>
+  if (loading) {
+    lod = <p>loading...</p>;
   }
 
   return (
@@ -53,7 +53,7 @@ const [loading , setLoading] =useState (true)
                   <Link to="/dashboard/addproduct">Add a product</Link>
                 </li>
               </>
-             ) : ( 
+            ) : (
               <>
                 <li>
                   <Link to="/dashboard/review">Add a review</Link>
@@ -62,7 +62,7 @@ const [loading , setLoading] =useState (true)
                   <Link to="/dashboard/myorders">My orders</Link>
                 </li>
               </>
-             )} 
+            )}
           </ul>
         </div>
       </div>

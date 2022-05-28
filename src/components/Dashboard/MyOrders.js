@@ -14,7 +14,7 @@ const MyOrders = () => {
     const getItem = async (user) => {
       const email = user.email;
       console.log(email);
-      const url = `http://localhost:5000/orders/${email}`;
+      const url = `https://gentle-oasis-35718.herokuapp.com/orders/${email}`;
 
       const { data } = await axios.get(url, {
         headers: {

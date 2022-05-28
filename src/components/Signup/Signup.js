@@ -37,22 +37,20 @@ const Signup = () => {
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
 
+    // frome here
 
-    // frome here  
-
- 
-     const url = `http://localhost:5000/users/${email}`;
-     fetch(url, {
-       method: "PUT",
-       headers: {
-         "content-type": "application/json",
-       },
-       body: JSON.stringify(user),
-     })
-       .then((res) => res.json())
-       .then((data) => {
-         console.log(data);
-       });
+    const url = `https://gentle-oasis-35718.herokuapp.com/users/${email}`;
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
 
     // fetch("https://gentle-oasis-35718.herokuapp.com/users", {
     //   method: "POST",
@@ -70,7 +68,6 @@ const Signup = () => {
 
   const handleGogle = () => {
     signInWithGoogle();
-
   };
   // if (gUser) {
   //   const email = gUser.user.email
@@ -79,7 +76,7 @@ const Signup = () => {
   //     email,
   //     role: "user",
   //   };
-  //   const url = `http://localhost:5000/users/${email}`;
+  //   const url = `https://gentle-oasis-35718.herokuapp.com/users/${email}`;
   //   fetch(url, {
   //     method: "PUT",
   //     headers: {
@@ -106,7 +103,6 @@ const Signup = () => {
   if (updateError) {
     msg = updateError?.message.slice(22, updateError.message.length - 2);
   }
-
 
   return (
     <div>
