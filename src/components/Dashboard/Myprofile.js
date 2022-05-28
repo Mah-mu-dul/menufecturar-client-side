@@ -18,7 +18,7 @@ const Myprofile = () => {
       .then((data) => setUsers(data));
   }, [email]);
   const you = users[0];
-  console.log(you);
+  console.log();
 
   const editEdu = () => {
     console.log("edited ");

@@ -34,26 +34,19 @@ const Signup = () => {
 
     const role = "user";
     const user = { name, email, role };
+
+    const postuser = () => {
+      console.log("inside post user func");
+    };
+
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
 
     // frome here
 
-    const url = `http://localhost:5000/users/${email}`;
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-
-    // fetch("http://localhost:5000/users", {
-    //   method: "POST",
+    // const url = `http://localhost:5000/users/${email}`;
+    // fetch(url, {
+    //   method: "PUT",
     //   headers: {
     //     "content-type": "application/json",
     //   },
@@ -61,35 +54,45 @@ const Signup = () => {
     // })
     //   .then((res) => res.json())
     //   .then((data) => {
-    //     event.target.reset();
+    //     console.log(data);
     //   });
-    // navigate(from, { replace: true });
+
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        event.target.reset();
+      });
+    navigate(from, { replace: true });
   };
 
   const handleGogle = () => {
     signInWithGoogle();
   };
-  // if (gUser) {
-  //   const email = gUser.user.email
-  //   const info = {
-  //     name: gUser.user.displayName,
-  //     email,
-  //     role: "user",
-  //   };
-  //   const url = `http://localhost:5000/users/${email}`;
-  //   fetch(url, {
-  //     method: "PUT",
-  //     headers: {
-  //       "content-type": "application/json",
-  //     },
-  //     body: JSON.stringify(info),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       toast("make admin sucessfull");
-  //       window.location.reload();
-  //     });
-  // }
+  if (gUser) {
+    const email = gUser.user.email;
+    const info = {
+      // name: gUser.user.displayName,
+      // email,
+      role: "user",
+      test:'test'
+    };
+
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(info),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }
 
   let msg;
 

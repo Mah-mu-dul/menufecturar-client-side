@@ -1,14 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useQuery } from "react-query";
+import Loading from "../Shared/Loading";
 
 const ManageOrders = () => {
-  const [orders, setOrders] = useState();
+  // const [orders, setOrders] = useState();
 
-  useEffect(() => {
-    fetch("http://localhost:5000/orders")
+// experiment 
+const { data: orders, isLoading } = useQuery(
+  "available",
+  () => fetch("http://localhost:5000/orders")
       .then((res) => res.json())
-      .then((data) => setOrders(data));
-  }, []);
+);
+
+ if (isLoading) {
+   return <Loading></Loading>;
+ }
+
+
+
+// experiment 
+
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/orders")
+  //     .then((res) => res.json())                              // i just    leave it to remember the process
+  //     .then((data) => setOrders(data));
+  // }, []);
   const shipedHandle = (id) => {
     const status = "shiped";
     const order = { status };
