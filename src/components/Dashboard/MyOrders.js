@@ -13,15 +13,13 @@ const MyOrders = () => {
   useEffect(() => {
     const getItem = async (user) => {
       const email = user.email;
-      console.log(email);
-      const url = `https://gentle-oasis-35718.herokuapp.com/orders/${email}`;
-
+      const url = `http://localhost:5000/orders/${email}`;
       const { data } = await axios.get(url, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       });
-      // console.log(data);
+      console.log(data);
 
       setOrder(data);
     };
@@ -32,7 +30,7 @@ const MyOrders = () => {
     const status = "paid";
     const order = { status };
 
-    const url = `https://gentle-oasis-35718.herokuapp.com/order/${id}`;
+    const url = `http://localhost:5000/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {

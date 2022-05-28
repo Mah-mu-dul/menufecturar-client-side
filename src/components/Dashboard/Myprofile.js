@@ -12,11 +12,8 @@ const Myprofile = () => {
   const [user, loading] = useAuthState(auth);
   const email = user.email;
 
-
-  
-
   useEffect(() => {
-    fetch(`https://gentle-oasis-35718.herokuapp.com/profile/${email}`)
+    fetch(`http://localhost:5000/profile/${email}`)
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [email]);

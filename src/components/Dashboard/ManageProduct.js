@@ -6,7 +6,7 @@ const ManageProduct = () => {
   const [prod, setProd] = useState(null);
 
   useEffect(() => {
-    fetch("https://gentle-oasis-35718.herokuapp.com/services")
+    fetch("http://localhost:5000/services")
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, []);

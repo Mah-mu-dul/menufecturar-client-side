@@ -5,7 +5,7 @@ const ManageOrders = () => {
   const [orders, setOrders] = useState();
 
   useEffect(() => {
-    fetch("https://gentle-oasis-35718.herokuapp.com/orders")
+    fetch("http://localhost:5000/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
@@ -13,7 +13,7 @@ const ManageOrders = () => {
     const status = "shiped";
     const order = { status };
 
-    const url = `https://gentle-oasis-35718.herokuapp.com/order/${id}`;
+    const url = `http://localhost:5000/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -47,7 +47,7 @@ const ManageOrders = () => {
           </thead>
           <tbody>
             {orders?.map((order, i) => (
-              <tr key={i+1}>
+              <tr key={i + 1}>
                 <th>{i + 1}</th>
                 <td>
                   <div className="avatar w-[50px]">
