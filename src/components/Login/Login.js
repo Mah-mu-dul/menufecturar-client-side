@@ -48,8 +48,8 @@ const Login = () => {
       }
     );
     localStorage.setItem("accessToken", data.token);
-    console.log(data);
-    // navigate(from, { replace: true });
+    // console.log(data);
+    navigate(from, { replace: true });
   };
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
