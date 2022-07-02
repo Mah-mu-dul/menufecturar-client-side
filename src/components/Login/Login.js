@@ -1,15 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import bg from "../../images/bg1.png";
 
 import {
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { reload } from "firebase/auth";
 import auth from "../../firebase.init";
-import axios from "axios";
 
 const Login = () => {
   const resetPassword = async () => {
@@ -41,14 +38,7 @@ const Login = () => {
 
     await signInWithEmailAndPassword(email, password);
 
-    const { data } = await axios.post(
-      "https://gentle-oasis-35718.herokuapp.com/login",
-      {
-        email,
-      }
-    );
-    localStorage.setItem("accessToken", data.token);
-    // console.log(data);
+
     navigate(from, { replace: true });
   };
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
@@ -60,14 +50,7 @@ const Login = () => {
       navigate(from, { replace: true });
     }
   }, [user, gUser, from, navigate]);
-  if (gUser) {
-    const info = {
-      name: gUser.user.displayName,
-      email: gUser.user.email,
-      role: "user",
-    };
-    //add fetch to update user
-  }
+
 
   let msg;
 

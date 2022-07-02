@@ -18,6 +18,9 @@ const Portfolio = () => {
       <p className="text-2xl text-red-700 text-center">
         work.mahmudulhasan@gmail.com
       </p>
+      <p className="text-2xl text-red-700 text-center">
+        work.mahmudulhasan@gmail.com
+      </p>
       <div className="p-5 lg:px-[20%]">
         <h1 className="text-3xl mt-5">Personal Info </h1>
         <div className=" p-5">

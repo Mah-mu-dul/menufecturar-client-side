@@ -29,7 +29,7 @@ import auth from "./firebase.init";
 function App() {
   const [user, loading] = useAuthState(auth);
   return (
-    <div className="text-black ">
+    <div className="text-black max-w-[1500px] mx-auto">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

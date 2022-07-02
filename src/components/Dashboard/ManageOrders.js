@@ -8,9 +8,7 @@ const ManageOrders = () => {
 
   // experiment
   const { data: orders, isLoading } = useQuery("available", () =>
-    fetch("https://gentle-oasis-35718.herokuapp.com/orders").then((res) =>
-      res.json()
-    )
+    fetch("http://localhost:5000/orders").then((res) => res.json())
   );
 
   if (isLoading) {
@@ -20,7 +18,7 @@ const ManageOrders = () => {
   // experiment
 
   // useEffect(() => {
-  //   fetch("https://gentle-oasis-35718.herokuapp.com/orders")
+  //   fetch("http://localhost:5000/orders")
   //     .then((res) => res.json())                              // i just    leave it to remember the process
   //     .then((data) => setOrders(data));
   // }, []);
@@ -28,7 +26,7 @@ const ManageOrders = () => {
     const status = "shiped";
     const order = { status };
 
-    const url = `https://gentle-oasis-35718.herokuapp.com/order/${id}`;
+    const url = `http://localhost:5000/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {

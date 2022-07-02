@@ -9,9 +9,7 @@ const Card = () => {
 
   //experiment
   const { data: services, isLoading } = useQuery("available", () =>
-    fetch("https://gentle-oasis-35718.herokuapp.com/services").then((res) =>
-      res.json()
-    )
+    fetch("http://localhost:5000/services").then((res) => res.json())
   );
 
   if (isLoading) {
@@ -21,7 +19,7 @@ const Card = () => {
   //experiment
 
   // useEffect(() => {
-  //   fetch("https://gentle-oasis-35718.herokuapp.com/services")
+  //   fetch("http://localhost:5000/services")
   //     .then((res) => res.json())                                       // I just leave it to remember the process, nothing else
   //     .then((data) => setServices(data));
   // }, []);

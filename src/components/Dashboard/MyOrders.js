@@ -6,22 +6,24 @@ import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
 
 const MyOrders = () => {
-  const [orders, setOrder] = useState([]);
+  const [orders, setOrder] = useState([{}]);
+  // console.log(orders);
 
   const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
     const getItem = async (user) => {
       const email = user.email;
-      const url = `https://gentle-oasis-35718.herokuapp.com/orders/${email}`;
+      const url = `http://localhost:5000/orders/${email}`;
       const { data } = await axios.get(url, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       });
-      console.log(data);
+      // console.log(data);
 
-      setOrder(data);
+      setOrder(data['result']);
+      // console.log(data['result']);
     };
     getItem(user);
   }, [user]);
@@ -30,7 +32,7 @@ const MyOrders = () => {
     const status = "paid";
     const order = { status };
 
-    const url = `https://gentle-oasis-35718.herokuapp.com/order/${id}`;
+    const url = `http://localhost:5000/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -44,9 +46,8 @@ const MyOrders = () => {
         window.location.reload();
         console.log("shipped for ", id);
       });
-    console.log("clicked");
+    // console.log("clicked");
   };
-  console.log(orders);
   if (loading) {
     <Loading />;
   }
@@ -65,7 +66,7 @@ const MyOrders = () => {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order, i) => (
+            {orders?.map((order, i) => (
               <tr key={order._id}>
                 <th>{i + 1}</th>
                 <td>

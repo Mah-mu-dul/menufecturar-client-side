@@ -44,7 +44,7 @@ const Signup = () => {
 
     // frome here
 
-    // const url = `https://gentle-oasis-35718.herokuapp.com/users/${email}`;
+    // const url = `http://localhost:5000/users/${email}`;
     // fetch(url, {
     //   method: "PUT",
     //   headers: {
@@ -57,7 +57,7 @@ const Signup = () => {
     //     console.log(data);
     //   });
 
-    fetch("https://gentle-oasis-35718.herokuapp.com/users", {
+    fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -83,7 +83,7 @@ const Signup = () => {
       test: "test",
     };
 
-    fetch("https://gentle-oasis-35718.herokuapp.com/users", {
+    fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
