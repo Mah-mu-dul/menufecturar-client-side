@@ -5,7 +5,12 @@ import Loading from "../Shared/Loading";
 
 const ManageOrders = () => {
   const [orders, setOrders] = useState();
-  console.log(orders);
+  // console.log(orders);
+
+  let allitems = new Set()
+  orders?.map(order =>allitems.add(order.itemName))
+  let allitemsinarray = new Array(...allitems).join("  ").split("  ");
+  
 
   // experiment
   useEffect(() => {
@@ -40,17 +45,22 @@ const ManageOrders = () => {
       .then((res) => res.json())
       .then((data) => setOrders(data));
   };
+  const filterOrderByItem = (item) =>{
+    console.log(item);
+  // add action for filter by product name. you can filter from orders or
+  //  re call api for find by email and item name
+
+  }
 
   return (
     <div>
       <div className="overflow-x-auto">
         <div className="flex justify-center">
-          {" "}
           <button
             onClick={() => {
               filterorders();
             }}
-            className="btn btn-sm text-black hover:text-white m-5 "
+            className="btn btn-sm borde-0 border-rose-500 text-black hover:text-white m-5 "
           >
             All orders
           </button>
@@ -58,7 +68,7 @@ const ManageOrders = () => {
             onClick={() => {
               filterorders("paid");
             }}
-            className="btn btn-sm text-black hover:text-white m-5 "
+            className="btn btn-sm borde-0 border-pink-500 text-black hover:text-white m-5 "
           >
             paid orders
           </button>
@@ -66,7 +76,7 @@ const ManageOrders = () => {
             onClick={() => {
               filterorders("unpaid");
             }}
-            className="btn btn-sm text-black hover:text-white m-5 "
+            className="btn btn-sm borde-0 border-pink-500 text-black hover:text-white m-5 "
           >
             Unpaid orders
           </button>
@@ -74,11 +84,38 @@ const ManageOrders = () => {
             onClick={() => {
               filterorders("shiped");
             }}
-            className="btn btn-sm text-black hover:text-white m-5 "
+            className="btn btn-sm borde-0 border-pink-500 text-black hover:text-white m-5 "
           >
             shiped orders
           </button>
+
+          {/* dropdown start here  */}
+          <button className="text-black  ">
+            <div className="dropdown dropdown-hover h-10">
+              <label
+                tabIndex="0"
+                className="btn m-1  btn-sm borde-0 border-pink-500  text-black hover:text-white "
+              >
+                orders by Item
+              </label>
+              <ul
+                tabIndex="0"
+                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                {allitemsinarray?.map((order,i) => (
+                  <li key={i} className="border-b-2">
+                    <p onClick={() => filterOrderByItem({ order })}>{order}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </button>
+          <button className="uppercase font-bold btn-sm disabled border rounded-md border-green-500 text-black  m-5 ">
+            total {orders?.length}
+          </button>
         </div>
+
+        {/* table start here */}
         <table className="table w-full">
           <thead>
             <tr className="text-white">
