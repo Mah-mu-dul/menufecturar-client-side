@@ -10,10 +10,12 @@ const Myprofile = () => {
   const [users, setUsers] = useState([]);
 
   const [user, loading] = useAuthState(auth);
+  console.log(user);
+  console.log(user.photoURL);
   const email = user.email;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/profile/${email}`)
+    fetch(`https://gentle-oasis-35718.herokuapp.com/profile/${email}`)
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [email]);
@@ -28,14 +30,21 @@ const Myprofile = () => {
       <div className="mx-auto flex justify-center mt-5">
         <div className="avatar flex justify-center">
           <div className="w-[50%]  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <img src="https://api.lorem.space/image/face?hash=3174" />
+            <img
+              alt=""
+              src={
+                user.photoURL
+                  ? user.photoURL
+                  : "https://objex.tech/assets/img/faces/placeholder.jpg"
+              }
+            />
           </div>
         </div>
       </div>
       <p className="text-5xl text-pink-400 text-center font-bold mt-5">
         {you?.name}
       </p>
-      <p className="text-2xl text-red-700 text-center">Email: {you?.email}</p>
+      <p className="text-2xl text-red-700 text-center">Email: {user?.email}</p>
       <div className="">
         <h1 className="text-3xl mt-5">Personal Info</h1>
         <div className=" p-5">

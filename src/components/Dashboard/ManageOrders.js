@@ -4,29 +4,21 @@ import { useQuery } from "react-query";
 import Loading from "../Shared/Loading";
 
 const ManageOrders = () => {
-  // const [orders, setOrders] = useState();
+  const [orders, setOrders] = useState();
+  console.log(orders);
 
   // experiment
-  const { data: orders, isLoading } = useQuery("available", () =>
-    fetch("http://localhost:5000/orders").then((res) => res.json())
-  );
+  useEffect(() => {
+    fetch("https://gentle-oasis-35718.herokuapp.com/orders")
+      .then((res) => res.json())
+      .then((data) => setOrders(data));
+  }, []);
 
-  if (isLoading) {
-    return <Loading></Loading>;
-  }
-
-  // experiment
-
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/orders")
-  //     .then((res) => res.json())                              // i just    leave it to remember the process
-  //     .then((data) => setOrders(data));
-  // }, []);
   const shipedHandle = (id) => {
     const status = "shiped";
     const order = { status };
 
-    const url = `http://localhost:5000/order/${id}`;
+    const url = `https://gentle-oasis-35718.herokuapp.com/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -41,11 +33,52 @@ const ManageOrders = () => {
       });
     console.log("shipped for ", id);
   };
-  console.log(orders);
+
+  const filterorders = (status) => {
+    console.log("clicked for", status);
+    fetch(`https://gentle-oasis-35718.herokuapp.com/payfilter/${status}`)
+      .then((res) => res.json())
+      .then((data) => setOrders(data));
+  };
 
   return (
     <div>
       <div className="overflow-x-auto">
+        <div className="flex justify-center">
+          {" "}
+          <button
+            onClick={() => {
+              filterorders();
+            }}
+            className="btn btn-sm text-black hover:text-white m-5 "
+          >
+            All orders
+          </button>
+          <button
+            onClick={() => {
+              filterorders("paid");
+            }}
+            className="btn btn-sm text-black hover:text-white m-5 "
+          >
+            paid orders
+          </button>
+          <button
+            onClick={() => {
+              filterorders("unpaid");
+            }}
+            className="btn btn-sm text-black hover:text-white m-5 "
+          >
+            Unpaid orders
+          </button>
+          <button
+            onClick={() => {
+              filterorders("shiped");
+            }}
+            className="btn btn-sm text-black hover:text-white m-5 "
+          >
+            shiped orders
+          </button>
+        </div>
         <table className="table w-full">
           <thead>
             <tr className="text-white">
@@ -65,7 +98,7 @@ const ManageOrders = () => {
                 <td>
                   <div className="avatar w-[50px]">
                     <div className="w-24 rounded-xl">
-                      <img src={order?.img} />
+                      <img alt="" src={order?.img} />
                     </div>
                   </div>
                 </td>
@@ -82,7 +115,7 @@ const ManageOrders = () => {
                       Ship
                     </button>
                   ) : (
-                    <></>
+                    <progress className="progress w-56"></progress>
                   )}
                 </td>
               </tr>

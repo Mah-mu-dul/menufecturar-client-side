@@ -23,7 +23,7 @@ const Footer = () => {
         <div>
           <span className="footer-title mx-auto">Social connention</span>
           <div className="grid grid-flow-col gap-4">
-            <a
+            <a alt=''
               target="_blank"
               href="https://www.facebook.com/mahmudulhasaniub/"
             >
@@ -31,20 +31,20 @@ const Footer = () => {
                 <BsFacebook />
               </h2>
             </a>
-            <a
+            <a alt=''
               target="_blank"
-              href="https://www.instagram.com/mah.mu.dul_ha.san/?hl=en"
+              href="https://github.com/wanna-be-pro"
             >
               <h2 className="text-4xl">
                 <BsGithub />
               </h2>
             </a>
-            <a target="_blank" href="https://github.com/wanna-be-pro">
+            <a alt="" target="_blank" href="https://www.instagram.com/mah.mu.dul_ha.san/?hl=en">
               <h2 className="text-4xl">
                 <BsInstagram />
               </h2>
             </a>
-            <a
+            <a alt=''
               target="_blank"
               href="https://www.linkedin.com/in/mahmudul-hasan-030a31228/"
             >

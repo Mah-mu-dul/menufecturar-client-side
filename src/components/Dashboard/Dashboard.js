@@ -2,24 +2,27 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Outlet } from "react-router-dom";
 import auth from "../../firebase.init";
+import Loading from "../Shared/Loading";
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
   const [userFromdb, setUserFromdb] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${user.email}`)
+    fetch(`https://gentle-oasis-35718.herokuapp.com/user/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setUserFromdb(data);
         setLoading(false);
       });
   }, [user]);
-  console.log(userFromdb);
-  let lod;
 
   if (loading) {
-    lod = <p>loading...</p>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 
   return (

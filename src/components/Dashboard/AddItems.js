@@ -31,7 +31,7 @@ const AddItems = () => {
 
     console.log(s);
 
-    fetch("http://localhost:5000/services", {
+    fetch("https://gentle-oasis-35718.herokuapp.com/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",

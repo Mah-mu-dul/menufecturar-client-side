@@ -7,8 +7,8 @@ const Portfolio = () => {
     <div>
       <div className="mx-auto flex justify-center mt-5">
         <div className="avatar flex justify-center">
-          <div className="w-[50%]  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <img src="https://api.lorem.space/image/face?hash=3174" />
+          <div className="lg:w-[25%]  w-[50%]  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <img src="https://portfolio-32df2.web.app/static/media/profile.223c81e10a5d15eebf08.jpg" />
           </div>
         </div>
       </div>
@@ -19,8 +19,11 @@ const Portfolio = () => {
         work.mahmudulhasan@gmail.com
       </p>
       <p className="text-2xl text-red-700 text-center">
-        work.mahmudulhasan@gmail.com
+        <a alt="" target="_blank" href="https://portfolio-32df2.web.app/">
+          website
+        </a>
       </p>
+
       <div className="p-5 lg:px-[20%]">
         <h1 className="text-3xl mt-5">Personal Info </h1>
         <div className=" p-5">
@@ -138,14 +141,17 @@ const Portfolio = () => {
           </span>
           <ul className="p-4 ">
             <li className="text-2xl">
-              <a href="https://warehouse-of-books.web.app/">1. BOOKrio</a>
+              <a target='_blank' href="https://warehouse-of-books.web.app/">1. BOOKrio</a>
             </li>
             <li className="text-2xl">
-              <a href=" https://on-the-way-f4693.web.app/">2. On the way</a>
+              <a target='_blank' href=" https://on-the-way-f4693.web.app/">2. On the way</a>
             </li>
             <li className="text-2xl">
-              <a href=" https://best-bike-r15m-by-mahmudul.netlify.app/">
-                3. Best Bike
+              <a target='_blank' href="http://todo-pip.web.app/">3. Todo</a>
+            </li>
+            <li className="text-2xl">
+              <a target='_blank' href=" https://best-bike-r15m-by-mahmudul.netlify.app/">
+                4. Best Bike
               </a>
             </li>
           </ul>

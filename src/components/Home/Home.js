@@ -8,9 +8,8 @@ const Home = () => {
   return (
     <div className="text-black">
       <Banner />
-      <div >
+      <div className="min-h-screen ">
         <Card />
-       
       </div>
       <BusinessSummary />
       <Review />
