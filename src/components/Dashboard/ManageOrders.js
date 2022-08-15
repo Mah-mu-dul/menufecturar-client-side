@@ -4,13 +4,15 @@ import { useQuery } from "react-query";
 import Loading from "../Shared/Loading";
 
 const ManageOrders = () => {
-  const [orders, setOrders] = useState();
+  let [orders, setOrders] = useState([]);
+  const [display, setDisplay] = useState([]);
+  const [filterByType, setFilterByType] = useState([]);
   // console.log(orders);
 
-  let allitems = new Set()
-  orders?.map(order =>allitems.add(order.itemName))
+  // to find all types of items
+  let allitems = new Set();
+  display?.map((order) => allitems.add(order.itemName));
   let allitemsinarray = new Array(...allitems).join("  ").split("  ");
-  
 
   // experiment
   useEffect(() => {
@@ -18,6 +20,7 @@ const ManageOrders = () => {
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
+  // setDisplay(orders)
 
   const shipedHandle = (id) => {
     const status = "shiped";
@@ -41,16 +44,25 @@ const ManageOrders = () => {
 
   const filterorders = (status) => {
     console.log("clicked for", status);
-    fetch(`https://gentle-oasis-35718.herokuapp.com/payfilter/${status}`)
-      .then((res) => res.json())
-      .then((data) => setOrders(data));
+    if (status === "") {
+      setDisplay(orders);
+      setFilterByType(display);
+    } else {
+      const display = orders?.filter((order) => order.status === status);
+      setDisplay(display);
+      setFilterByType(display);
+      console.log(display);
+    }
   };
-  const filterOrderByItem = (item) =>{
-    console.log(item);
-  // add action for filter by product name. you can filter from orders or
-  //  re call api for find by email and item name
+  const filterOrderByItem = (item, display) => {
+    console.log((item));
+    const show = display?.filter((order) => (order.itemName == item ))
+    // setFilterByType(show);
 
-  }
+    console.log(display);
+    console.log(show);
+  };
+  // console.log(orders);
 
   return (
     <div>
@@ -58,7 +70,7 @@ const ManageOrders = () => {
         <div className="flex justify-center">
           <button
             onClick={() => {
-              filterorders();
+              filterorders("");
             }}
             className="btn btn-sm borde-0 border-rose-500 text-black hover:text-white m-5 "
           >
@@ -102,16 +114,18 @@ const ManageOrders = () => {
                 tabIndex="0"
                 className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
               >
-                {allitemsinarray?.map((order,i) => (
+                {allitemsinarray?.map((order, i) => (
                   <li key={i} className="border-b-2">
-                    <p onClick={() => filterOrderByItem({ order })}>{order}</p>
+                    <p onClick={() => filterOrderByItem(order, display)}>
+                      {order}
+                    </p>
                   </li>
                 ))}
               </ul>
             </div>
           </button>
           <button className="uppercase font-bold btn-sm disabled border rounded-md border-green-500 text-black  m-5 ">
-            total {orders?.length}
+            total {orders?.length} {orders?.[0]?.status}
           </button>
         </div>
 
@@ -129,7 +143,7 @@ const ManageOrders = () => {
             </tr>
           </thead>
           <tbody>
-            {orders?.map((order, i) => (
+            {filterByType?.map((order, i) => (
               <tr key={i + 1}>
                 <th>{i + 1}</th>
                 <td>
