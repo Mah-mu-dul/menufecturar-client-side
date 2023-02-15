@@ -6,7 +6,7 @@ const useToken = (user) => {
     const email = user?.user?.email;
     const currentUser = { email: email };
     if (email) {
-      fetch(`https://gentle-oasis-35718.herokuapp.com/user/${email}`, {
+      fetch(`https://menufecturer-server-git-main-wanna-be-pro.vercel.app/user/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

@@ -14,7 +14,7 @@ const MyOrders = () => {
   useEffect(() => {
     const getItem = async (user) => {
       const email = user.email;
-      const url = `https://gentle-oasis-35718.herokuapp.com/orders/${email}`;
+      const url = `https://menufecturer-server-git-main-wanna-be-pro.vercel.app/orders/${email}`;
       const { data } = await axios.get(url, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -32,7 +32,7 @@ const MyOrders = () => {
     const status = "paid";
     const order = { status };
 
-    const url = `https://gentle-oasis-35718.herokuapp.com/order/${id}`;
+    const url = `https://menufecturer-server-git-main-wanna-be-pro.vercel.app/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {

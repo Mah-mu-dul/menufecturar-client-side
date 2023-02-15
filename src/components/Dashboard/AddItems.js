@@ -31,7 +31,7 @@ const AddItems = () => {
 
     console.log(s);
 
-    fetch("https://gentle-oasis-35718.herokuapp.com/services", {
+    fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",

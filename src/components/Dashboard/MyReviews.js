@@ -27,7 +27,7 @@ const MyReviews = () => {
       displayName,
       email,
     };
-    fetch("https://gentle-oasis-35718.herokuapp.com/review", {
+    fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",

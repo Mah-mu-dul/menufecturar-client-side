@@ -6,7 +6,7 @@ const Review = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch("https://gentle-oasis-35718.herokuapp.com/reviews")
+    fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/reviews")
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);

@@ -6,7 +6,7 @@ import Loading from "../Shared/Loading";
 const ManageOrders = () => {
   let [orders, setOrders] = useState([]);
   const [display, setDisplay] = useState([]);
-  const [filterByType, setFilterByType] = useState([]);
+  const [filterByType, setFilterByType] = useState(orders);
   // console.log(orders);
 
   // to find all types of items
@@ -16,7 +16,7 @@ const ManageOrders = () => {
 
   // experiment
   useEffect(() => {
-    fetch("https://gentle-oasis-35718.herokuapp.com/orders")
+    fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
@@ -26,7 +26,7 @@ const ManageOrders = () => {
     const status = "shiped";
     const order = { status };
 
-    const url = `https://gentle-oasis-35718.herokuapp.com/order/${id}`;
+    const url = `https://menufecturer-server-git-main-wanna-be-pro.vercel.app/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -44,7 +44,7 @@ const ManageOrders = () => {
 
   const filterorders = (status) => {
     console.log("clicked for", status);
-    if (status === "") {
+    if (status === "all") {
       setDisplay(orders);
       setFilterByType(display);
     } else {
@@ -55,8 +55,8 @@ const ManageOrders = () => {
     }
   };
   const filterOrderByItem = (item, display) => {
-    console.log((item));
-    const show = display?.filter((order) => (order.itemName == item ))
+    console.log(item);
+    const show = display?.filter((order) => order.itemName == item);
     // setFilterByType(show);
 
     console.log(display);
@@ -70,7 +70,7 @@ const ManageOrders = () => {
         <div className="flex justify-center">
           <button
             onClick={() => {
-              filterorders("");
+              filterorders("all");
             }}
             className="btn btn-sm borde-0 border-rose-500 text-black hover:text-white m-5 "
           >

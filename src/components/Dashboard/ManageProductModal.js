@@ -8,7 +8,7 @@ const ManageProductModal = ({ prod }, { setProduct }) => {
   const [user, loading] = useAuthState(auth);
   const handleDelete = (id) => {
     console.log("clicked delete");
-    const url = `https://gentle-oasis-35718.herokuapp.com/services/${id}`;
+    const url = `https://menufecturer-server-git-main-wanna-be-pro.vercel.app/services/${id}`;
     fetch(url, {
       method: "DELETE",
       body: user.email,

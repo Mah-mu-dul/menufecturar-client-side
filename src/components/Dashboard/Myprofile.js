@@ -15,7 +15,7 @@ const Myprofile = () => {
   const email = user.email;
 
   useEffect(() => {
-    fetch(`https://gentle-oasis-35718.herokuapp.com/profile/${email}`)
+    fetch(`https://menufecturer-server-git-main-wanna-be-pro.vercel.app/profile/${email}`)
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [email]);

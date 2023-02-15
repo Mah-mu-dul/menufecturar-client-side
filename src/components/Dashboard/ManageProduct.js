@@ -6,14 +6,14 @@ const ManageProduct = () => {
   const [prod, setProd] = useState(null);
 
   useEffect(() => {
-    fetch("https://gentle-oasis-35718.herokuapp.com/services")
+    fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/services")
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, []);
 
   //   console.log(product);
 
-  const handleproduct = (id) => {};
+  const handleproduct = (id) => { };
   return (
     <div>
       <div className="overflow-x-auto">

@@ -23,7 +23,7 @@ const Purchese = () => {
   const AdressRef = useRef("");
 
   useEffect(() => {
-    const url = `https://gentle-oasis-35718.herokuapp.com/services/${id}`;
+    const url = `https://menufecturer-server-git-main-wanna-be-pro.vercel.app/services/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setItem(data));
@@ -55,7 +55,7 @@ const Purchese = () => {
       adress,
     };
     console.log(order);
-    fetch("https://gentle-oasis-35718.herokuapp.com/order", {
+    fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [userFromdb, setUserFromdb] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch(`https://gentle-oasis-35718.herokuapp.com/user/${user.email}`)
+    fetch(`https://menufecturer-server-git-main-wanna-be-pro.vercel.app/user/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setUserFromdb(data);
