@@ -42,7 +42,7 @@ const Portfolio = () => {
               <p className="text-3xl mr-2">
                 <FaGraduationCap />
               </p>
-              <p>Independent niversity, Bangladesh </p>
+              <p>Independent University, Bangladesh </p>
             </li>
           </ul>
         </div>

@@ -112,6 +112,7 @@ const Purchese = () => {
             <span className="label-text">Name</span>
           </label>
           <input
+          
             value={user.displayName}
             className="mx-auto input input-bordered input-primary w-full "
           />
@@ -119,6 +120,7 @@ const Purchese = () => {
             <span className="label-text">Email</span>
           </label>
           <input
+          
             required
             value={user.email}
             className="mx-auto input input-bordered input-primary w-full "
@@ -138,6 +140,7 @@ const Purchese = () => {
             <span className="label-text">Quanity</span>
           </label>
           <input
+          
             required
             defaultValue={item.minOrder}
             min={item.minOrder}
@@ -153,6 +156,7 @@ const Purchese = () => {
             <span className="label-text">Adress</span>
           </label>
           <input
+          
             ref={AdressRef}
             required
             name="adress"

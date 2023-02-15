@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ManageProductModal from "./ManageProductModal";
+import UpdateOrder from "./UpdateOrder";
 
 const ManageProduct = () => {
   const [product, setProduct] = useState([]);
   const [prod, setProd] = useState(null);
+  const [selectedPoduct, setSelectedProduct] = useState({})
 
   useEffect(() => {
     fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/services")
@@ -13,7 +15,9 @@ const ManageProduct = () => {
 
   //   console.log(product);
 
-  const handleproduct = (id) => { };
+  const handleproduct = (product) => {
+    setSelectedProduct(product)
+  };
   return (
     <div>
       <div className="overflow-x-auto">
@@ -61,12 +65,10 @@ const ManageProduct = () => {
                   </label>
                 </td>
                 <td>
-                  <button
-                    onClick={() => handleproduct(product._id)}
-                    className="btn btn-primary"
-                  >
+                  <label onClick={() => { handleproduct(product)}} htmlFor="my-modal-5" className="btn btn-primary">
                     Update
-                  </button>
+                  </label>
+                  <UpdateOrder product={selectedPoduct}/>
                 </td>
 
                 <td></td>

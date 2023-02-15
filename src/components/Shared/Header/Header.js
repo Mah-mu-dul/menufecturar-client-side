@@ -13,7 +13,7 @@ const Header = () => {
   };
   const navbarItems = (
     <>
-      <li>
+      <li id="top">
         <Link to="home">Home</Link>
       </li>
 

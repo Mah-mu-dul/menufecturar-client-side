@@ -41,6 +41,9 @@ const ManageOrders = () => {
       });
     console.log("shipped for ", id);
   };
+  const mailHandle = (order) => {
+console.log(order)
+  }
 
   const filterorders = (status) => {
     console.log("clicked for", status);
@@ -139,7 +142,7 @@ const ManageOrders = () => {
               <th>Email</th>
               <th>Quantity</th>
               <th>status</th>
-              <th> </th>
+              <th>Action </th>
             </tr>
           </thead>
           <tbody>
@@ -166,7 +169,13 @@ const ManageOrders = () => {
                       Ship
                     </button>
                   ) : (
-                    <progress className="progress w-56"></progress>
+                    <a href={`mailto:${order.email}`}>
+                    <button
+                      className="btn btn-secondary"
+                    >
+                      Mail
+                    </button>
+                    </a>
                   )}
                 </td>
               </tr>

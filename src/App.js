@@ -24,12 +24,14 @@ import Blog from "./components/Blog/Blog";
     import "react-toastify/dist/ReactToastify.css";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "./firebase.init";
+import Top from "./components/Shared/Top";
 
 
 function App() {
   const [user, loading] = useAuthState(auth);
   return (
-    <div className="text-black max-w-[1500px] mx-auto">
+    <div className="text-black max-w-[1500px] mx-auto scroll-smooth">
+      
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -74,6 +76,7 @@ function App() {
       </Routes>
       <Footer />
       <ToastContainer />
+      <Top />
     </div>
   );
 }
