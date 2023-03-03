@@ -7,7 +7,6 @@ import axios from "axios";
 const ManageProductModal = ({ prod }, { setProduct }) => {
   const [user, loading] = useAuthState(auth);
   const handleDelete = (id) => {
-    console.log("clicked delete");
     const url = `https://menufecturer-server-git-main-wanna-be-pro.vercel.app/services/${id}`;
     fetch(url, {
       method: "DELETE",

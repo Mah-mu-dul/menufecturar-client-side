@@ -11,7 +11,7 @@ const ManageProduct = () => {
     fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/services")
       .then((res) => res.json())
       .then((data) => setProduct(data));
-  }, []);
+  }, [prod]);
 
   //   console.log(product);
 
