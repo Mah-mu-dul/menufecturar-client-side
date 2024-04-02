@@ -14,7 +14,7 @@ const MyOrders = () => {
   useEffect(() => {
     const getItem = async (user) => {
       const email = user.email;
-      const url = `https://menufecturer-server-git-main-wanna-be-pro.vercel.app/orders/${email}`;
+      const url = `http://localhost:5000/orders/${email}`;
       const { data } = await axios.get(url, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -32,7 +32,7 @@ const MyOrders = () => {
     const status = "paid";
     const order = { status };
 
-    const url = `https://menufecturer-server-git-main-wanna-be-pro.vercel.app/order/${id}`;
+    const url = `http://localhost:5000/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {

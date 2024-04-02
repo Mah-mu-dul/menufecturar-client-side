@@ -9,7 +9,8 @@ const Card = () => {
 
   //experiment
   const { data: services, isLoading } = useQuery("available", () =>
-    fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/services").then((res) => res.json())
+    // fetch("http://localhost:5000/services").then((res) => res.json())
+    fetch("http://localhost:5000/services").then((res) => res.json())
   );
 
   if (isLoading) {
@@ -19,7 +20,7 @@ const Card = () => {
   //experiment
 
   // useEffect(() => {
-  //   fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/services")
+  //   fetch("http://localhost:5000/services")
   //     .then((res) => res.json())                                       // I just leave it to remember the process, nothing else
   //     .then((data) => setServices(data));
   // }, []);
@@ -29,9 +30,9 @@ const Card = () => {
       {services?.map((service, i) => (
         <div key={i + 1} className="card w-96 bg-base-100 shadow-xl mx-auto">
           <div className="h-[350px] flex items-center justify-center overflow-hidden">
-            
-              <img className="w-full" src={service.url} alt={service.name} />
-            
+
+            <img className="w-full" src={service.url} alt={service.name} />
+
           </div>
           <div className="card-body">
             <h2 className="card-title">

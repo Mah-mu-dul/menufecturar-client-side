@@ -1,32 +1,103 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useQuery } from "react-query";
 import Loading from "../Shared/Loading";
+
+
+const initialFilter = { status: 'all', itemName: '', selectedName: 'all' };
 
 const ManageOrders = () => {
   let [orders, setOrders] = useState([]);
+
   const [display, setDisplay] = useState([]);
   const [filterByType, setFilterByType] = useState(orders);
-  // console.log(orders);
+  const [selectedType, setSelectType] = useState("All")
 
-  // to find all types of items
-  let allitems = new Set();
-  display?.map((order) => allitems.add(order.itemName));
-  let allitemsinarray = new Array(...allitems).join("  ").split("  ");
 
-  // experiment
+
+
+
+
+  //  new normalized  states 
+  const [allOrders, setAllOrders] = useState([])
+  const [DisplayOrders, setDisplayOrders] = useState([])
+  const [filterParameters, setFilterParameters] = useState({ status: "", item: "" })
+  const [reload, setReload] = useState(true)
+
+
   useEffect(() => {
-    fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/orders")
-      .then((res) => res.json())
-      .then((data) => setOrders(data));
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/orders");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setAllOrders(data);
+        console.log(allOrders);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, [reload])
+
+  /*
+  there are 4 cases:
+      1. status all and items all
+      2. status all and items spacific
+      3. staus specific items all
+      4. staus specific items specific
+  */
+
+
+  // useEffect(() => {
+
+  //   const filteredData = allOrders.filter(item => {
+  //     return (
+  //       (filterParameters.status === 'all' || item.status === filterParameters.status) &&
+  //       (item.itemName.includes(filterParameters.item) || filterParameters.item === '')
+  //     );
+  //   });
+  //   setDisplayOrders(filteredData)
+
+
+  //   console.log(DisplayOrders);
+  //   console.log(filterParameters);
+  // }, [filterParameters])
+
+
+
+
+  // let allitemsinarray = [...new Set(display.map(item => item.itemName))];  // to find unique names in the display
+
+  useEffect(() => {
+    // const fetchData = async () => {
+    //   try {
+    //     const response = await fetch("http://localhost:5000/orders");
+    //     if (!response.ok) {
+    //       throw new Error("Network response was not ok");
+    //     }
+    //     const data = await response.json();
+    //     setOrders(data);
+    //     setDisplay(data);
+    //     console.log(data);
+    //   } catch (error) {
+    //     console.error("Error fetching data:", error);
+    //   }
+    //   setSelectType("all")
+    // };
+
+    // fetchData();
   }, []);
+
   // setDisplay(orders)
 
   const shipedHandle = (id) => {
     const status = "shiped";
     const order = { status };
 
-    const url = `https://menufecturer-server-git-main-wanna-be-pro.vercel.app/order/${id}`;
+    // const url = `http://localhost:5000/order/${id}`;
+    const url = `http://localhost:5000/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -41,65 +112,99 @@ const ManageOrders = () => {
       });
     console.log("shipped for ", id);
   };
-  const mailHandle = (order) => {
-console.log(order)
-  }
 
-  const filterorders = (status) => {
-    console.log("clicked for", status);
-    if (status === "all") {
-      setDisplay(orders);
-      setFilterByType(display);
-    } else {
-      const display = orders?.filter((order) => order.status === status);
-      setDisplay(display);
-      setFilterByType(display);
-      console.log(display);
-    }
+  const [filter, setFilter] = useState(initialFilter);
+  const [uniqueItemNames, setUniqueItemNames] = useState([]);
+
+
+  // Replace with your array of objects
+
+  // Function to filter the data based on the filter criteria
+  useEffect(() => {
+    const filteredData = allOrders.filter(item => {
+      return (
+        (filter.status === 'all' || item.status === filter.status) &&
+        (filter.selectedName === 'all' || item.itemName === filter.selectedName) &&
+        (item.itemName.toLowerCase().includes(filter.itemName.toLowerCase()) || filter.itemName === '')
+      );
+    });
+    setDisplayOrders(filteredData)
+    console.log(DisplayOrders);
+  }, [filter])
+
+  // Function to handle changes in the filter dropdowns
+  const handleFilterChange = (event) => {
+    const { name, value } = event.target;
+    setFilter({ ...filter, [name]: value });
   };
-  const filterOrderByItem = (item, display) => {
-    console.log(item);
-    const show = display?.filter((order) => order.itemName == item);
-    // setFilterByType(show);
-
-    console.log(display);
-    console.log(show);
-  };
-  // console.log(orders);
-
+  
   return (
     <div>
       <div className="overflow-x-auto">
+        <button
+          onClick={() => {
+            // filterorders("all");
+            setReload(true)
+            setFilterParameters({ ...filterParameters, status: "all", item: "all" })
+          }}
+          className="btn btn-sm borde-0 border-rose-500 text-black hover:bg-gray-200 mx-5"
+        >
+          Reload orders
+        </button>
+        <select name="status" onChange={handleFilterChange} value={filter.status}>
+          <option value="all">All</option>
+          <option value="paid">Paid</option>
+          <option value="unpaid">Unpaid</option>
+          <option value="shiped">Shipped</option>
+        </select>
+        
+        <div>
+          <label>Item Name:</label>
+          <input
+            type="text"
+            className="border  rounded m-2"
+            name="itemName"
+            value={filter.itemName}
+            onChange={handleFilterChange}
+          />
+        </div>
         <div className="flex justify-center">
+
           <button
             onClick={() => {
-              filterorders("all");
+              // filterorders("all");
+              setFilterParameters({ ...filterParameters, status: "all", item: "all" })
             }}
-            className="btn btn-sm borde-0 border-rose-500 text-black hover:text-white m-5 "
+            className="btn btn-sm borde-0 border-rose-500 text-black hover:bg-gray-200 m-5 "
           >
             All orders
           </button>
           <button
             onClick={() => {
-              filterorders("paid");
+              // filterorders("paid");
+              // setSelectType("paid")
+              setFilterParameters({ ...filterParameters, status: "paid", item: "all" })
             }}
-            className="btn btn-sm borde-0 border-pink-500 text-black hover:text-white m-5 "
+            className="btn btn-sm borde-0 border-rose-500 text-black hover:bg-gray-200 m-5 "
           >
             paid orders
           </button>
           <button
             onClick={() => {
-              filterorders("unpaid");
+              // filterorders("unpaid");
+              // setSelectType("unpaid")
+              setFilterParameters({ ...filterParameters, status: "unpaid", item: "all" })
             }}
-            className="btn btn-sm borde-0 border-pink-500 text-black hover:text-white m-5 "
+            className="btn btn-sm borde-0 border-rose-500 text-black hover:bg-gray-200 m-5 "
           >
             Unpaid orders
           </button>
           <button
             onClick={() => {
-              filterorders("shiped");
+              // filterorders("shiped");
+              setFilterParameters({ ...filterParameters, status: "shiped", item: "all" })
             }}
-            className="btn btn-sm borde-0 border-pink-500 text-black hover:text-white m-5 "
+            className="btn btn-sm borde-0 border-rose-500 text-black hover:bg-gray-200 m-5 "
           >
             shiped orders
           </button>
@@ -109,7 +214,7 @@ console.log(order)
             <div className="dropdown dropdown-hover h-10">
               <label
                 tabIndex="0"
-                className="btn m-1  btn-sm borde-0 border-pink-500  text-black hover:text-white "
+                className="btn m-1  btn-sm borde-0 border-rose-500  text-black hover:bg-gray-200 "
               >
                 orders by Item
               </label>
@@ -117,18 +222,31 @@ console.log(order)
                 tabIndex="0"
                 className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
               >
-                {allitemsinarray?.map((order, i) => (
+                {
+                  DisplayOrders ? <li
+                    className="border-b-2 mt-2"
+                    onClick={() => setFilterParameters({ ...filterParameters, item: "all" })}>
+                    All</li> : <></>
+                }
+
+                {DisplayOrders?.map((order, i) => (
                   <li key={i} className="border-b-2">
-                    <p onClick={() => filterOrderByItem(order, display)}>
-                      {order}
+                    <p onClick={() => setFilterParameters({ ...filterParameters, item: order.itemName })}>
+
+                      {order.itemName}
                     </p>
                   </li>
                 ))}
+
               </ul>
             </div>
           </button>
+
           <button className="uppercase font-bold btn-sm disabled border rounded-md border-green-500 text-black  m-5 ">
-            total {orders?.length} {orders?.[0]?.status}
+            total {
+              selectedType === "all" ? orders?.length + " Items" : (filterByType?.length + " " + filterByType?.[0]?.status)
+            }
+
           </button>
         </div>
 
@@ -146,7 +264,7 @@ console.log(order)
             </tr>
           </thead>
           <tbody>
-            {filterByType?.map((order, i) => (
+            {DisplayOrders?.map((order, i) => (
               <tr key={i + 1}>
                 <th>{i + 1}</th>
                 <td>
@@ -169,12 +287,14 @@ console.log(order)
                       Ship
                     </button>
                   ) : (
-                    <a href={`mailto:${order.email}`}>
-                    <button
-                      className="btn btn-secondary"
+                    <a
+                    // href={`mailto:${order.email}`}
                     >
-                      Mail
-                    </button>
+                      <button
+                        className={`btn normal-case bg-gray-100 hover:bg-gray-300 border-0 text-black `}
+                      >
+                        Mail
+                      </button>
                     </a>
                   )}
                 </td>

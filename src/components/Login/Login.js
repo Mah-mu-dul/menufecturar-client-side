@@ -38,7 +38,6 @@ const Login = () => {
 
     await signInWithEmailAndPassword(email, password);
 
-
     navigate(from, { replace: true });
   };
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);

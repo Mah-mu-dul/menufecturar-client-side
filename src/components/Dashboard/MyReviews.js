@@ -27,7 +27,7 @@ const MyReviews = () => {
       displayName,
       email,
     };
-    fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/review", {
+    fetch("http://localhost:5000/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",

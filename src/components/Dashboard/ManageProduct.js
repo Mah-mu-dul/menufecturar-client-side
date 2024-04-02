@@ -8,7 +8,7 @@ const ManageProduct = () => {
   const [selectedPoduct, setSelectedProduct] = useState({})
 
   useEffect(() => {
-    fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/services")
+    fetch("http://localhost:5000/services")
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, [prod]);
@@ -65,10 +65,10 @@ const ManageProduct = () => {
                   </label>
                 </td>
                 <td>
-                  <label onClick={() => { handleproduct(product)}} htmlFor="my-modal-5" className="btn btn-primary">
+                  <label onClick={() => { handleproduct(product) }} htmlFor="my-modal-5" className="btn btn-primary">
                     Update
                   </label>
-                  <UpdateOrder product={selectedPoduct}/>
+                  <UpdateOrder product={selectedPoduct} />
                 </td>
 
                 <td></td>

@@ -15,7 +15,7 @@ const Myprofile = () => {
   const email = user.email;
 
   useEffect(() => {
-    fetch(`https://menufecturer-server-git-main-wanna-be-pro.vercel.app/profile/${email}`)
+    fetch(`http://localhost:5000/profile/${email}`)
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [email]);

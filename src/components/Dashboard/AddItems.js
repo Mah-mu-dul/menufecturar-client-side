@@ -31,7 +31,8 @@ const AddItems = () => {
 
     console.log(s);
 
-    fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/services", {
+    // fetch("http://localhost:5000/services", {
+    fetch("http://localhost:5000/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",

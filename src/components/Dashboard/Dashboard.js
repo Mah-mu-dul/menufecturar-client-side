@@ -9,7 +9,8 @@ const Dashboard = () => {
   const [userFromdb, setUserFromdb] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch(`https://menufecturer-server-git-main-wanna-be-pro.vercel.app/user/${user.email}`)
+    // fetch(`http://localhost:5000/user/${user.email}`)
+    fetch(`http://localhost:5000/user/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setUserFromdb(data);

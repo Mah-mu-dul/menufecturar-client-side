@@ -23,7 +23,7 @@ const Purchese = () => {
   const AdressRef = useRef("");
 
   useEffect(() => {
-    const url = `https://menufecturer-server-git-main-wanna-be-pro.vercel.app/services/${id}`;
+    const url = `http://localhost:5000/services/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setItem(data));
@@ -55,7 +55,7 @@ const Purchese = () => {
       adress,
     };
     console.log(order);
-    fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/order", {
+    fetch("http://localhost:5000/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -112,7 +112,7 @@ const Purchese = () => {
             <span className="label-text">Name</span>
           </label>
           <input
-          
+
             value={user.displayName}
             className="mx-auto input input-bordered input-primary w-full "
           />
@@ -120,7 +120,7 @@ const Purchese = () => {
             <span className="label-text">Email</span>
           </label>
           <input
-          
+
             required
             value={user.email}
             className="mx-auto input input-bordered input-primary w-full "
@@ -140,7 +140,7 @@ const Purchese = () => {
             <span className="label-text">Quanity</span>
           </label>
           <input
-          
+
             required
             defaultValue={item.minOrder}
             min={item.minOrder}
@@ -156,7 +156,7 @@ const Purchese = () => {
             <span className="label-text">Adress</span>
           </label>
           <input
-          
+
             ref={AdressRef}
             required
             name="adress"

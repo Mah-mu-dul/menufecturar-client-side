@@ -7,7 +7,8 @@ const MakeAdmin = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://menufecturer-server-git-main-wanna-be-pro.vercel.app/users")
+    // fetch("http://localhost:5000/users")
+    fetch("http://localhost:5000/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, []);
@@ -19,7 +20,8 @@ const MakeAdmin = () => {
 
     console.log("clicked");
 
-    const url = `https://menufecturer-server-git-main-wanna-be-pro.vercel.app/users/${id}`;
+    // const url = `http://localhost:5000/users/${id}`;
+    const url = `http://localhost:5000/users/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
